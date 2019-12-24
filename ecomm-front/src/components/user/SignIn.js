@@ -1,16 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../core/Layout'
 import axios from 'axios'
 import validator from 'validator'
-import Button from '../styled/Button'
+import { Redirect } from "react-router-dom"
+import { URL } from '../../config'
+
+import UserForm from '../styled/UserForm'
+
+import { authenticate } from '../../auth'
 
 const SingIn = () => {
 const [inputs, setInputs] = useState({
         email: '',
         password: '',
-        error: '',
+        error: false,
         shoudRedirect: false
     })
+
+useEffect(() => {}, [inputs])
 
 const { email, password, error, shoudRedirect } = inputs    
 
@@ -30,7 +37,6 @@ const errorColor = (name, color, otherColor) => {
 const handleChange = name => e => {
         const value = e.target.value
         setInputs({...inputs, error: false, [name]: value})
-
         if(name === 'email') {
             if(!validator.isEmail(value)) {
                 errorColor(name, 'error', 'no-error')
@@ -44,30 +50,50 @@ const handleChange = name => e => {
         e.preventDefault()
         const { email, password } = inputs
         try{
-            const user = await axios.post('https://obscure-wildwood-92689.herokuapp.com/api/signin', {
+            const user = await axios.post(`${URL}signin`, {
                 email,
                 password
             })
-            console.log(user)
+            
+            authenticate(user.data, () => {
+                setInputs({...inputs, shoudRedirect:true})
+            })
+
         } catch (error) {
-            setInputs({...inputs, error: true, success: false})
+            setInputs({...inputs, error: 'Email or Password is wrong', success: false})
         }
     }
 
+    const redirectToHome = () => {
+        if (shoudRedirect) {
+            return <Redirect to="/" />
+        }
+    }
+
+    const itemsToRender = [{
+        label: "Email",
+        name: "email",
+        inputType: "email",
+        value: inputs.email,
+        classname: "user-email",
+    },
+    {
+        label: "Password",
+        name: "password",
+        value: inputs.password,
+        inputType: "password",
+        classname: "user-password",
+    }]
+
     return (
-        <Layout title= "SignUp Page" description="Sign up for Node React E-commerce App" className="container">
-            <form className = 'signUp-form' onSubmit = {handleSubmit}>
-                <div className="input-wrapper">
-                    <span>Email</span>    
-                    <input value = {inputs.email} className = 'user-email' onChange = {handleChange('email')}></input>
-                </div>
-                <div className="input-wrapper"> 
-                    <span>Password</span>     
-                    <input value = {inputs.password} className = 'user-password' type="password" onChange = {handleChange('password')}></input>
-                </div>    
-                <Button className = "submit-button">Submit</Button>
-            </form>
-            {error? <span>Email or Password is wrong</span>: ''}
+        <Layout title= "SignUp Page" description="Sign in for Node React E-commerce App" className="container">
+            <UserForm 
+                items = {itemsToRender}
+                handleChangeFunction = {handleChange}
+                handleSubmitFunction = {handleSubmit}
+            />  
+            {error? <span>{error}</span>: ''}
+            {redirectToHome()}
         </Layout>
     )
     

@@ -1,0 +1,37 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: solid 1px #ccc;
+    padding: 20px;
+}
+
+.form input{
+    border:solid 0.5px ghostwhite;
+    outline: none;
+    width: 100%;
+}
+
+.input-wrapper {
+    border: solid 1px #ccc;
+    margin: 20px;
+    padding: 20px;
+    position: relative
+}
+
+.input-wrapper span {
+    position: absolute;
+    top: -14px;
+    background: white;
+    color: gray;
+    font-style: italic;
+    padding: 0px 5px;
+}
+
+input.error{
+    border-color: var(--error-red);
+}
+
+input.no-error{
+    border-color: var(--teal);
+}

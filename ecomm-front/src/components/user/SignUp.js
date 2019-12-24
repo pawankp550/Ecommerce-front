@@ -5,9 +5,11 @@ import { useHistory } from 'react-router-dom'
 import './user.css'
 import axios from 'axios'
 import validator from 'validator'
+import { URL } from '../../config'
+
+import UserForm from '../styled/UserForm'
 
 //let history = useHistory()
-let errorMessage = ''
 const SignUp = () => {
     const [inputs, setInputs] = useState({
         name: '',
@@ -63,7 +65,7 @@ const handleChange = name => e => {
         e.preventDefault()
         const { name, email, password } = inputs
         try{
-            const user = await axios.post('https://obscure-wildwood-92689.herokuapp.com/api/signup', {
+            const user = await axios.post(`${URL}signup`, {
                 name,
                 email,
                 password
@@ -71,20 +73,40 @@ const handleChange = name => e => {
             setInputs({...inputs, error: false, name: '', email: '', password: '', success: true})
             //history.push('/signin')
         } catch (error) {
-            setInputs({...inputs, error: error.response, success: false})
-            errorMessage = error.response.data.error.message
+            setInputs({...inputs, error: error.response.data.error.message, success: false})
         }
     }
 
+    const itemsToRender = [{
+        label: "Name",
+        name: "name",
+        value: inputs.name,
+        inputType: "text",
+        classname: "user-name",
+    },
+    {
+        label: "Email",
+        name: "email",
+        inputType: "email",
+        value: inputs.email,
+        classname: "user-email",
+    },
+    {
+        label: "Password",
+        name: "password",
+        inputType: "password",
+        value: inputs.password,
+        classname: "user-password",
+    }]
+
     return (
         <Layout title= "SignUp Page" description="Sign up for Node React E-commerce App" className="container">
-            <form className = 'signUp-form' onSubmit = {handleSubmit}>
-                <input placeholder = 'Name' value = {inputs.name} className = 'user-name' onChange = {handleChange('name')}></input>
-                <input placeholder = 'Email' value = {inputs.email} className = 'user-email' onChange = {handleChange('email')}></input>
-                <input placeholder = 'Password' value = {inputs.password} className = 'user-password' type="password" onChange = {handleChange('password')}></input>
-                <Button className = "submit-button">Submit</Button>
-            </form>
-            <span>{errorMessage}</span>
+            < UserForm 
+                items = {itemsToRender}
+                handleChangeFunction = {handleChange}
+                handleSubmitFunction = {handleSubmit}
+            />
+            <span>{inputs.error}</span>
         </Layout>
     )
 }
