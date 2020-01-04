@@ -1,14 +1,39 @@
 import React from 'react'
 import { NavLink, Redirect  } from 'react-router-dom'
 import './navbar.css'
-import { signOut } from '../../auth'
+import { signOut, checkSignIn } from '../../auth'
 
 import history from'../../history'
 
 const Navbar = () => {
-   
+   const { isloggedIn, user } = checkSignIn()
     const redirectOnSignOut = () => {
        window.location.replace('/')
+    }
+
+    const renderLogOption = () => {
+        if (isloggedIn) {
+            return (
+                <>
+                    <li className="">
+                        <span onClick = {() => signOut(redirectOnSignOut)}>
+                            SignOut
+                        </span>
+                    </li>
+                </>                    
+            )
+        } else {
+            return (
+                <>
+                    <li className="">
+                        <NavLink  className="" to="/signin" exact>Sign In</NavLink >
+                    </li>
+                    <li className="">
+                        <NavLink  className="" to="/signup" exact>Sign Up</NavLink >
+                    </li>
+                </>
+            )
+        }
     }
 
     return (
@@ -17,17 +42,7 @@ const Navbar = () => {
             <li className="">
             <NavLink  className="" to="/" exact >Home</NavLink >
             </li>
-            <li className="">
-            <NavLink  className="" to="/signin" exact>Sign In</NavLink >
-            </li>
-            <li className="">
-            <NavLink  className="" to="/signup" exact>Sign Up</NavLink >
-            </li>
-            <li className="">
-                <span onClick = {() => signOut(redirectOnSignOut)}>
-                    SignOut
-                </span>
-            </li>
+            {renderLogOption()}
         </ul>
     </nav>
     )
