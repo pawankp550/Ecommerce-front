@@ -23,12 +23,15 @@ export const signOut = (next) => {
 }
 
 export const checkSignIn = () => {
-    if (window !== undefined) {
-        const user = window.localStorage.getItem('jwt')
-        if (user === null) {
-            return { isloggedIn: false }
-        } else {
-            return { isloggedIn: true, user }
-        }
+    if(window === undefined) {
+        return false
     }
+
+    const user = window.localStorage.getItem('jwt')
+    if (user === null) {
+        return { isloggedIn: false }
+    } else {
+        return { isloggedIn: true, user: JSON.parse(user) }
+    }
+
 } 
