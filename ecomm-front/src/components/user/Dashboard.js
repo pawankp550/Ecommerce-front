@@ -4,9 +4,11 @@ import Layout from '../core/Layout'
 const Dashboard = () => {
 
     return (
-        <Layout title= "SignUp Page" description="Sign in for Node React E-commerce App" className="container">
+        <Layout title= "Dashboard Page" description="Node React E-commerce App" className="container">
 
         </Layout>
     )
 
 }
+
+export default Dashboard

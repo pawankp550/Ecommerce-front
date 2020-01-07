@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "../auth/PrivateRoute";
 
 import './app.css';
 
@@ -9,15 +10,19 @@ import Home from './core/Home';
 // user components
 import SignUp from './user/SignUp';
 import SignIn from './user/SignIn';
+import Dashboard from '../components/user/Dashboard'
 
 
 
 function Routes() {
   return (
     <BrowserRouter>
-        <Route path="/" exact component={Home} />   
-        <Route path="/signin" exact component={SignIn} />
-        <Route path="/signup" exact component={SignUp} />
+        <Switch>
+            <Route path="/" exact component={Home} />   
+            <Route path="/signin" exact component={SignIn} />
+            <Route path="/signup" exact component={SignUp} />
+            <PrivateRoute path="/dashboard" exact component={Dashboard} />
+        </Switch>
     </BrowserRouter>
   );
 }
