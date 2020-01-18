@@ -44,7 +44,7 @@ const Navbar = () => {
             </li>
             {renderLogOption()}
             <li className="">
-            <NavLink  className="" to="dashboard" exact >Dashboard</NavLink >
+            <NavLink  className="" to="/user/dashboard" exact >Dashboard</NavLink >
             </li>
         </ul>
     </nav>

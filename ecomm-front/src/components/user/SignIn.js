@@ -7,7 +7,7 @@ import { URL } from '../../config'
 
 import UserForm from '../styled/UserForm'
 
-import { authenticate } from '../../auth'
+import { authenticate, checkSignIn } from '../../auth'
 
 const SingIn = () => {
 const [inputs, setInputs] = useState({
@@ -46,7 +46,7 @@ const handleChange = name => e => {
         }
     }
 
-    const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
         e.preventDefault()
         const { email, password } = inputs
         try{
@@ -64,9 +64,11 @@ const handleChange = name => e => {
         }
     }
 
-    const redirectToHome = () => {
+const redirectToHome = () => {
         if (shoudRedirect) {
-            return <Redirect to="/" />
+            console.log(checkSignIn())
+            const { user } = checkSignIn()
+            return user.publicProfile.role === 0 ?  <Redirect to="/user/dashboard" /> :  <Redirect to="/admin/dashboard" /> 
         }
     }
 
