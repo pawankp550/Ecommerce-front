@@ -1,0 +1,15 @@
+
+
+.dashboard-lists {
+    display: flex;
+
+    &-left {
+        flex: 2;
+        margin: 5px;
+    }
+
+    &-right {
+        flex: 6;
+        margin: 5px;
+     }
+}

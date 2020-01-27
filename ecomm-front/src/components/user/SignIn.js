@@ -66,7 +66,6 @@ const handleSubmit = async (e) => {
 
 const redirectToHome = () => {
         if (shoudRedirect) {
-            console.log(checkSignIn())
             const { user } = checkSignIn()
             return user.publicProfile.role === 0 ?  <Redirect to="/user/dashboard" /> :  <Redirect to="/admin/dashboard" /> 
         }
