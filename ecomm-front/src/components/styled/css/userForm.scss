@@ -1,3 +1,5 @@
+@import '../../../utils/variables.scss';
+
 .form{
     display: flex;
     flex-direction: column;
@@ -29,9 +31,9 @@
 }
 
 input.error{
-    border-color: var(--error-red);
+    border-color: $error-red;
 }
 
 input.no-error{
-    border-color: var(--teal);
+    border-color: $no-error-teal;
 }

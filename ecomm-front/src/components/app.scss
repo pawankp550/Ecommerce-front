@@ -2,7 +2,9 @@
  --error-red: #fa7066;
  --wheat:  wheat;
 }
-
+body {
+    font-family: monospace;
+}
 .jumbotron {
     padding: 0rem 2rem;
 }

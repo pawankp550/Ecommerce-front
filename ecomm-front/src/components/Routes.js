@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "../auth/PrivateRoute";
 
-import './app.css';
+import './app.scss';
 
 // core components
 import Home from './core/Home';

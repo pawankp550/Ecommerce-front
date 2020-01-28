@@ -1,5 +1,5 @@
 import React from 'react'
-import './userForm.css'
+import './css/userForm.scss'
 
 import Button from './Button'
 

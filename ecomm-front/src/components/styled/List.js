@@ -1,5 +1,5 @@
 import React from "react";
-import './list.scss';
+import './css/list.scss';
 
 const List = (props) => {
 

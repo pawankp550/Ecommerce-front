@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, Redirect  } from 'react-router-dom'
-import './navbar.css'
+import './css/navbar.scss'
 import { signOut, checkSignIn } from '../../auth'
 
 import history from'../../history'
@@ -15,7 +15,7 @@ const Navbar = () => {
         if (isloggedIn) {
             return (
                 <>
-                    <li className="">
+                    <li className="navbar-button-signout">
                         <span onClick = {() => signOut(redirectOnSignOut)}>
                             SignOut
                         </span>

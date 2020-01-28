@@ -4,7 +4,7 @@
     -webkit-box-shadow: 0px 0px 9px 0px rgba(87,79,87,1);
     -moz-box-shadow: 0px 0px 9px 0px rgba(87,79,87,1);
     box-shadow: 0px 0px 9px 0px rgba(87,79,87,1);
-    position: sticky
+    position: sticky;
 }
 
 .link-wrapper {
@@ -19,4 +19,8 @@
 .link-wrapper li a{
     text-decoration: none;
     color: black
+}
+
+ .navbar-button-signout {
+    cursor: pointer;   
 }

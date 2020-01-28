@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Layout from '../core/Layout'
 import Button from '../styled/Button'
 import { useHistory } from 'react-router-dom'
-import './user.scss'
+
 import axios from 'axios'
 import validator from 'validator'
 import { URL } from '../../config'
