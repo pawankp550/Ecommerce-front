@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { route } from 'react-router-dom'
 import { checkSignIn } from './index'
 import {Route, Redirect} from 'react-router-dom'
 
