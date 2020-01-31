@@ -76,7 +76,8 @@ const redirectToHome = () => {
         }
     }
 
-    const itemsToRender = [{
+    const itemsToRender = {
+        data: [{
         label: "Email",
         name: "email",
         inputType: "email",
@@ -89,7 +90,9 @@ const redirectToHome = () => {
         value: inputs.password,
         inputType: "password",
         classname: "user-password",
-    }]
+    }],
+    buttonText: 'Submit'
+}
 
     return (
         <Layout title= "SignUp Page" description="Sign in for Node React E-commerce App" className="container">

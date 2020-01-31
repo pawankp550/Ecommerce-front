@@ -77,7 +77,8 @@ const handleChange = name => e => {
         }
     }
 
-    const itemsToRender = [{
+    const itemsToRender = {
+        data : [{
         label: "Name",
         name: "name",
         value: inputs.name,
@@ -97,7 +98,9 @@ const handleChange = name => e => {
         inputType: "password",
         value: inputs.password,
         classname: "user-password",
-    }]
+    }],
+    buttonText: 'Submit'
+}
 
     return (
         <Layout title= "SignUp Page" description="Sign up for Node React E-commerce App" className="container">

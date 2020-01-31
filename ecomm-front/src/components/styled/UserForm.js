@@ -5,9 +5,10 @@ import Button from './Button'
 
 const UserForm = (props) => {
     const { items, handleChangeFunction, handleSubmitFunction } = props
+    const { data, buttonText } = items
 
     const renderFields = () => {
-        return items.map(item => {
+        return data.map(item => {
             const { label, name, value, inputType, classname } = item
             return (
                  <div className="input-wrapper">
@@ -23,7 +24,7 @@ const UserForm = (props) => {
     return (
         <form className = 'form' onSubmit = {handleSubmitFunction}>
             {renderFields()}
-            <Button className = "submit-button">Submit</Button>
+            <Button className = "submit-button">{buttonText}</Button>
         </form>    
         )
 
