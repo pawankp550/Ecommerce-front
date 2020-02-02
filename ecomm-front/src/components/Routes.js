@@ -11,8 +11,11 @@ import Home from './core/Home';
 // user components
 import SignUp from './user/SignUp';
 import SignIn from './user/SignIn';
-import Dashboard from '../components/user/Dashboard'
-import AdminDashboard from '../components/user/AdminDashboard'
+import Dashboard from '../components/user/Dashboard';
+
+// admin components
+import AdminDashboard from '../components/user/AdminDashboard';
+import CreateCategory from '../components/admin/CreateCategory';
 
 function Routes() {
   return (
@@ -23,6 +26,7 @@ function Routes() {
             <Route path="/signup" exact component={SignUp} />
             <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
             <AdminRoute path="/admin/dashboard" exact component={AdminDashboard}/>
+            <AdminRoute path="/create/category" exact component={CreateCategory}/>
         </Switch>
     </BrowserRouter>
   );

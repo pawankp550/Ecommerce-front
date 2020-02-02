@@ -1,0 +1,15 @@
+@import '../../../utils/variables.scss';
+
+.form-validation-container {
+    text-align: center;
+    padding: 2px;
+    margin-bottom: 5px;
+}
+
+.form-error {
+    background-color: $error-red;
+}
+
+.form-success {
+    background-color: $no-error-teal;
+}
