@@ -27,7 +27,7 @@ const AdminDashboard = () => {
         title: 'User Links',
         data: {
             myCart: <NavLink to="/create/category">Create Category</NavLink>,
-            updateDetails: <NavLink to="/create/product">create Product</NavLink>
+            updateDetails: <NavLink to="/create/product">Create Product</NavLink>
         }
     }
 

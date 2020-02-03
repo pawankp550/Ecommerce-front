@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom"
 import { URL } from '../../config'
 
 import UserForm from '../styled/UserForm'
+import Validation from '../styled/Validation'
 
 import { authenticate, checkSignIn } from '../../auth'
 
@@ -96,12 +97,12 @@ const redirectToHome = () => {
 
     return (
         <Layout title= "SignUp Page" description="Sign in for Node React E-commerce App" className="container">
+            {error? <Validation data = {{ text: error, type: 'error' }}/> : ''}
             <UserForm 
                 items = {itemsToRender}
                 handleChangeFunction = {handleChange}
                 handleSubmitFunction = {handleSubmit}
             />  
-            {error? <span>{error}</span>: ''}
             {redirectToHome()}
         </Layout>
     )

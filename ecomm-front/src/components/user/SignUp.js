@@ -8,6 +8,7 @@ import validator from 'validator'
 import { URL } from '../../config'
 
 import UserForm from '../styled/UserForm'
+import Validation from '../styled/Validation'
 
 //let history = useHistory()
 const SignUp = () => {
@@ -104,12 +105,12 @@ const handleChange = name => e => {
 
     return (
         <Layout title= "SignUp Page" description="Sign up for Node React E-commerce App" className="container">
+        {inputs.error? <Validation data = {{ text: inputs.error, type: 'error' }}/> : ''}
             < UserForm 
                 items = {itemsToRender}
                 handleChangeFunction = {handleChange}
                 handleSubmitFunction = {handleSubmit}
             />
-            <span>{inputs.error}</span>
         </Layout>
     )
 }

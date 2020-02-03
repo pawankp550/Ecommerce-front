@@ -1,5 +1,13 @@
 @import '../../../utils/variables.scss';
 
+@mixin animate-div($anmation-name) {
+    -webkit-animation-name: $anmation-name; 
+    -webkit-animation-duration: 6s; 
+    animation-name: $anmation-name;
+    animation-duration: 6s;
+    -webkit-animation-iteration-count: infinite;
+}
+
 .form-validation-container {
     text-align: center;
     padding: 2px;
@@ -8,8 +16,45 @@
 
 .form-error {
     background-color: $error-red;
+
+    @include animate-div(error-animation);
 }
 
 .form-success {
     background-color: $no-error-teal;
+
+    @include animate-div(success-animation);
+}
+
+
+@-webkit-keyframes error-animation {
+    0%   {background-color: $error-red;}
+    25%  {background-color: $error-red-lighter;}
+    50%   {background-color: $error-red;}
+    75%   {background-color: $error-red-lighter;}
+    100% {background-color: $error-red;}
+}
+
+@keyframes error-animation {
+    0%   {background-color: $error-red;}
+    25%  {background-color: $error-red-lighter;}
+    50%   {background-color: $error-red;}
+    75%   {background-color: $error-red-lighter;}
+    100% {background-color: $error-red;}
+}
+
+@-webkit-keyframes success-animation {
+    0%   {background-color: $no-error-teal;}
+    25%  {background-color: $no-error-teal-lighter;}
+    50%   {background-color: $no-error-teal;}
+    75%   {background-color: $no-error-teal-lighter;}
+    100% {background-color: $no-error-teal;}
+}
+
+@keyframes success-animation {
+    0%   {background-color: $no-error-teal;}
+    25%  {background-color: $no-error-teal-lighter;}
+    50%   {background-color: $no-error-teal;}
+    75%   {background-color: $no-error-teal-lighter;}
+    100% {background-color: $no-error-teal;}
 }
