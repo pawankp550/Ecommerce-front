@@ -11,7 +11,7 @@ let Button = (props) => {
 
     return (
     <button
-        className={props.className}
+        className={props.className + " primary-Button"}
         style={buttonStyle}
         onClick={props.handleClick}>
         <span>

@@ -1,6 +1,6 @@
 @import '../../../utils/variables.scss';
 
-button {
+.primary-Button {
   border-radius: 3px;
   border: none;
   color: #FFFFFF;
@@ -19,7 +19,7 @@ button {
     align-self: center;
 }
 
-button span {
+.primary-Button span {
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -27,11 +27,11 @@ button span {
 }
 
 
-button:hover span {
+.primary-Button:hover span {
   font-weight: 700;
 }
 
-button:hover span:after {
+.primary-Button:hover span:after {
   opacity: 1;
   right: 0;
 }
