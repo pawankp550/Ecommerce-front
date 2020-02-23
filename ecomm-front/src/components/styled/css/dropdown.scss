@@ -1,0 +1,57 @@
+$parent-class: dropdown;
+
+.#{$parent-class} {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.#{$parent-class}-selected {
+  border: 1px solid;
+  cursor: pointer;
+  padding: 2px 0px;
+  text-align: center;
+}
+
+.#{$parent-class}-list {
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity .5s;
+
+  &-options{
+    border: 1px solid;
+    list-style: none;
+    padding: 0px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    
+    button{
+        cursor: pointer;
+        padding: 5px 0px;
+        border: none;
+        border-bottom: solid 0.5px black;
+        width: 100%;
+        text-align: center;
+        background-color: white;
+
+      &:last-child {
+        border-bottom: none
+      }
+    }
+
+    button:hover{ 
+      font-weight: 700;
+      border-bottom: solid 2px black;
+    }
+
+  }
+}
+
+.#{$parent-class}-list-open {
+    margin-top: 2px;
+    z-index: 1;
+    opacity: 1;
+}

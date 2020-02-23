@@ -21,7 +21,11 @@
     position: relative
 }
 
-.input-wrapper span {
+.input-textarea {
+    width: 100%
+}
+
+.input-wrapper .input-label {
     position: absolute;
     top: -14px;
     background: white;
