@@ -85,6 +85,7 @@ const handleChange = name => e => {
         value: inputs.name,
         inputType: "text",
         classname: "user-name",
+        tagType: 'input'
     },
     {
         label: "Email",
@@ -92,6 +93,7 @@ const handleChange = name => e => {
         inputType: "email",
         value: inputs.email,
         classname: "user-email",
+        tagType: 'input'
     },
     {
         label: "Password",

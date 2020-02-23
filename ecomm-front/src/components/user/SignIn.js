@@ -84,6 +84,7 @@ const redirectToHome = () => {
         inputType: "email",
         value: inputs.email,
         classname: "user-email",
+        tagType: 'input'
     },
     {
         label: "Password",
@@ -91,6 +92,7 @@ const redirectToHome = () => {
         value: inputs.password,
         inputType: "password",
         classname: "user-password",
+        tagType: 'input'
     }],
     buttonText: 'Submit'
 }
