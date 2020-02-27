@@ -20,6 +20,7 @@ const CreateCategory = () => {
             inputType: "text",
             value: name,
             classname: "category-name",
+            tagType: 'input'
         }],
         buttonText: 'Create'
     }

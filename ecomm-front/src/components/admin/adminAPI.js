@@ -20,18 +20,16 @@ export const createCategory = async (name, token) => {
     }
 }
 
-export const createProduct = async (product, token) => {
+export const createProduct = async (formData, token) => {
     try {
-         const response = await axios({
-                method: 'post',
-                url: `${URL}product/create`,
-                data: qs.stringify(product),
-                headers: {
-                    'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-                }
-            })
+        const response = await axios.post(`${URL}product/create`, formData,
+            {
+            headers: {
+                Authorization: token
+            }
+        })
         return response
-    }
+    } 
     catch (err) {
         return { error: err}
     }

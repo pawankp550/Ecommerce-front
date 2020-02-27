@@ -101,6 +101,7 @@ const handleChange = name => e => {
         inputType: "password",
         value: inputs.password,
         classname: "user-password",
+        tagType: 'input'
     }],
     buttonText: 'Submit'
 }

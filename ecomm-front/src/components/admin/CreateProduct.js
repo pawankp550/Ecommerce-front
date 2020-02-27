@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Layout from '../core/Layout';
 import UserForm from '../styled/UserForm';
+import { createProduct } from '../admin/adminAPI'
+import { checkSignIn } from '../../auth';
 
 const CreateProduct = () => {
-    const [state, setState] = useState({
+    const { user } = checkSignIn()
+    const [values, setValues] = useState({
         name: '',
         description: '',
         price: '',
@@ -12,20 +15,30 @@ const CreateProduct = () => {
         shipping: '',
         photo: '',
         error: false,
-        success: true
+        success: true,
+        formData: ''
     })
 
-    const { name, description, price, category, quantity, shipping } = state
+    useEffect(() => {
+        setValues({ ...values, formData: new FormData() });
+    }, []);
+
+    const { name, description, price, category, quantity, shipping, photo, formData } = values
 
     const handleChange = (name) => (e) => {
-        setState({
-            ...state,
-            [name] : e.target.value
+        e.persist()
+        
+        const value = /photo/i.test(name) ? e.target.files : e.target.value
+        setValues({
+            ...values,
+            [name] : value
         })
+        formData.set(name, value)
     }
 
-    const handleSubmit = () => {
-
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        createProduct(formData, user.token)
     }
 
     const itemsToRender = {
@@ -74,6 +87,14 @@ const CreateProduct = () => {
             value: shipping,
             classname: "product-category",
             tagType: 'dropdown'
+        },
+        {
+            label: "Images",
+            name: "photo",
+            value: photo,
+            classname: "product-images",
+            tagType: 'image',
+            inputType: 'file'
         }
     ],
         buttonText: 'Submit'}
