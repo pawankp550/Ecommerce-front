@@ -3,12 +3,13 @@ import "./css/dropdown.scss";
 
 const Dropdown = (props) => {
   const [ddstate, setddState] = useState({
-    isOpen: false
+    isOpen: false,
+    selectedOptions: ''
   });
 
   const { handleChangeFn, data } = props
 
-  const { name, value } = data
+  const { name, value, options, classname } = data
 
   const toggleOptions = () => {
     const { isOpen } = ddstate;
@@ -30,15 +31,25 @@ const Dropdown = (props) => {
     e.preventDefault()
     setddState({
       ...ddstate,
+      selectedOptions: e.target.name,
       isOpen: false
     });
     handleChangeFn(name)(e)
   };
 
+  const renderOptions = () => {
+    return options.map((item, i) => {
+        const { value, name } = item
+        return (
+            <button onClick={getSelectedOption} value={value} name={name} key={name + i}>{name}</button>
+        )
+    })
+  }
+
   return (
-    <div className="dropdown">
+    <div className= {classname + ' dropdown'}>
       <div className="dropdown-selected" onClick={toggleOptions}>
-        <span>{value === "" ? "Select" : value}</span>
+        <span>{value === "" ? "Select" : ddstate.selectedOptions}</span>
       </div>
       <div
         className={
@@ -46,10 +57,7 @@ const Dropdown = (props) => {
         }
       >
         <div className="dropdown-list-options">
-          <button onClick={getSelectedOption} value="vv">vv</button>
-          <button onClick={getSelectedOption} value="honda">honda</button>
-          <button onClick={getSelectedOption} value="panigale">panigale</button>
-          <button onClick={getSelectedOption} value="cbr">cbr</button>
+          {renderOptions()}
         </div>
       </div>
     </div>

@@ -8,7 +8,6 @@ $parent-class: dropdown;
 }
 
 .#{$parent-class}-selected {
-  border: 1px solid;
   cursor: pointer;
   padding: 2px 0px;
   text-align: center;
@@ -18,9 +17,10 @@ $parent-class: dropdown;
   opacity: 0;
   overflow: hidden;
   transition: opacity .5s;
+   pointer-events: none;
 
   &-options{
-    border: 1px solid;
+    border: 1px ridge;
     list-style: none;
     padding: 0px;
     position: absolute;
@@ -54,4 +54,5 @@ $parent-class: dropdown;
     margin-top: 2px;
     z-index: 1;
     opacity: 1;
+    pointer-events: all;
 }

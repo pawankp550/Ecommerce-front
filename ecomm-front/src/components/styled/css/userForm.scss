@@ -12,6 +12,23 @@
     border:solid 0.5px ghostwhite;
     outline: none;
     width: 100%;
+    position: relative;
+}
+
+.form input[type="file"]::after{
+   content: "Choose File";
+    height: 100%;
+    width: 27%;
+    padding: 0px;
+    position: absolute;
+    left: 0px;
+    text-align: center;
+    border-radius: 3px;
+    border: none;
+    color: #FFFFFF;
+    transition: all 0.5s;
+    cursor: pointer; 
+    background-color: $primary-color;
 }
 
 .input-wrapper {
@@ -34,10 +51,10 @@
     padding: 0px 5px;
 }
 
-input.error{
-    border-color: $error-red;
+input.error, textarea.error{
+    border-color: $error-red-lighter;
 }
 
-input.no-error{
+input.no-error, textarea.no-error{
     border-color: $no-error-teal;
 }

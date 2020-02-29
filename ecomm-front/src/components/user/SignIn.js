@@ -51,7 +51,7 @@ const handleSubmit = async (e) => {
         e.preventDefault()
         const { email, password } = inputs
         try{
-            const user = await axios.post(`${URL}signin`, {
+            const user = await axios.post(`${URL}/signin`, {
                 email,
                 password
             })

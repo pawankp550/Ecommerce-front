@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { URL } from '../../config';
-import qs from 'qs'
 
 export const createCategory = async (name, token) => {
 
     try {
-        const response = await axios.post(`${URL}category/create`, {
+        const response = await axios.post(`${URL}/category/create`, {
             "name": name
             },
             {
@@ -20,9 +19,10 @@ export const createCategory = async (name, token) => {
     }
 }
 
-export const createProduct = async (formData, token) => {
+export const createProduct = async (data, token) => {
+
     try {
-        const response = await axios.post(`${URL}product/create`, formData,
+        const response = await axios.post(`${URL}/product/create`, data,
             {
             headers: {
                 Authorization: token

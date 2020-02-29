@@ -13,7 +13,7 @@ const CreateProduct = () => {
         category: '',
         quantity: '',
         shipping: '',
-        photo: '',
+        imageData: null,
         error: false,
         success: true,
         formData: ''
@@ -22,23 +22,93 @@ const CreateProduct = () => {
     useEffect(() => {
         setValues({ ...values, formData: new FormData() });
     }, []);
+    
+    const { name, description, price, category, quantity, shipping, imageData, formData } = values
 
-    const { name, description, price, category, quantity, shipping, photo, formData } = values
+    const errorColor = (name, color, otherColor) => {
+    let ele = document.querySelector(`.product-${name}`)
+    let hasClass = ele.classList.contains(color)
+    let hasOtherClass = ele.classList.contains(otherColor)
+
+    if(!hasClass) {
+        if(hasOtherClass) {
+            ele.classList.remove(otherColor)
+        }
+        ele.classList.add(color)
+    }
+}
 
     const handleChange = (name) => (e) => {
         e.persist()
         
-        const value = /photo/i.test(name) ? e.target.files : e.target.value
-        setValues({
-            ...values,
-            [name] : value
-        })
+        const value = /imageData/i.test(name) ? e.target.files[0] : e.target.value
+
         formData.set(name, value)
+        setValues({
+               ...values,
+               [name] : value  
+            })
+
+        if(name === 'name') {
+            if(value.length === 0 || value === '' || value === ' ') {
+                errorColor(name, 'error', 'no-error')
+            } else {
+                errorColor(name, 'no-error', 'error')
+            }
+        }
+
+        if(name === 'description') {
+            if(value.length < 20 || value === '' || value === ' ') {
+                errorColor(name, 'error', 'no-error')
+            } else {
+                errorColor(name, 'no-error', 'error')
+            }
+        }
+
+        if(name === 'price') {
+            if(value <= 0 || value === '' || value === ' ') {
+                errorColor(name, 'error', 'no-error')
+            } else {
+                errorColor(name, 'no-error', 'error')
+            }
+        }
+
+        if(name === 'quantity') {
+            if(value <= 0 || value === '' || value === ' ') {
+                errorColor(name, 'error', 'no-error')
+            } else {
+                errorColor(name, 'no-error', 'error')
+            }
+        }
+
+        if(name === 'category') {
+            if(value.length === 0 || value === '' || value === ' ') {
+                errorColor(name, 'error', 'no-error')
+            } else {
+                errorColor(name, 'no-error', 'error')
+            }
+        }
+
+        if(name === 'shipping') {
+            if(value.length === 0 || value === '' || value === ' ') {
+                errorColor(name, 'error', 'no-error')
+            } else {
+                errorColor(name, 'no-error', 'error')
+            }
+        }
+
+        if(name === 'imageData') {
+            if(!value) {
+                errorColor(name, 'error', 'no-error')
+            } else {
+                errorColor(name, 'no-error', 'error')
+            }
+        }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        createProduct(formData, user.token)
+        const response = await createProduct(formData, user.token)
     }
 
     const itemsToRender = {
@@ -79,20 +149,22 @@ const CreateProduct = () => {
             name: "category",
             value: category,
             classname: "product-category",
-            tagType: 'dropdown'
+            tagType: 'dropdown',
+            options: [{value: '5e4ab608a5d6380017a9fb60', name: 'mobile'}]
         },
         {
             label: "Shipping",
             name: "shipping",
             value: shipping,
-            classname: "product-category",
-            tagType: 'dropdown'
+            classname: "product-shipping",
+            tagType: 'dropdown',
+            options: [{value: 'true', name: 'true'}, {value: 'false', name: 'false'}]
         },
         {
             label: "Images",
-            name: "photo",
-            value: photo,
-            classname: "product-images",
+            name: "imageData",
+            value: imageData,
+            classname: "product-imageData",
             tagType: 'image',
             inputType: 'file'
         }

@@ -66,7 +66,7 @@ const handleChange = name => e => {
         e.preventDefault()
         const { name, email, password } = inputs
         try{
-            const user = await axios.post(`${URL}signup`, {
+            const user = await axios.post(`${URL}/signup`, {
                 name,
                 email,
                 password
