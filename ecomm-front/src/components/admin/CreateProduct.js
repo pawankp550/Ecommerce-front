@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import Layout from '../core/Layout';
 import UserForm from '../styled/UserForm';
-import { createProduct } from '../admin/adminAPI'
+import { createProduct, getCategories } from '../admin/adminAPI';
 import { checkSignIn } from '../../auth';
+import Loader from '../styled/Loader';
+import Validation from '../styled/Validation';
 
 const CreateProduct = () => {
     const { user } = checkSignIn()
@@ -15,15 +17,26 @@ const CreateProduct = () => {
         shipping: '',
         imageData: null,
         error: false,
-        success: true,
+        success: false,
+        loading: false,
+        categoryData: [],
         formData: ''
     })
 
+    const init = async () => {
+        const response = await getCategories()
+        const categoryData = response.data.map(item => {
+            const { _id, name} = item
+            return {value: _id, name}
+        })
+        setValues({ ...values, categoryData, formData: new FormData() });
+    }
+
     useEffect(() => {
-        setValues({ ...values, formData: new FormData() });
+        init()
     }, []);
     
-    const { name, description, price, category, quantity, shipping, imageData, formData } = values
+    const { name, description, price, category, quantity, shipping, imageData, error, success, formData, categoryData } = values
 
     const errorColor = (name, color, otherColor) => {
     let ele = document.querySelector(`.product-${name}`)
@@ -107,8 +120,39 @@ const CreateProduct = () => {
     }
 
     const handleSubmit = async (e) => {
+         setValues({
+               ...values,
+               loading : true  
+            })
+
         e.preventDefault()
         const response = await createProduct(formData, user.token)
+  
+        setValues({
+               ...values,
+               loading : false  
+            })
+
+        if (response.error) {
+            setValues({
+               ...values,
+               error : response.error.message,
+               success : false  
+            })
+        } else {
+             setValues({
+                ...values,
+                success : true,
+                error : false,
+                name: '',
+                description: '',
+                price: '',
+                category: '',
+                quantity: '',
+                shipping: '',
+                imageData: null,
+            })
+        }
     }
 
     const itemsToRender = {
@@ -150,7 +194,7 @@ const CreateProduct = () => {
             value: category,
             classname: "product-category",
             tagType: 'dropdown',
-            options: [{value: '5e4ab608a5d6380017a9fb60', name: 'mobile'}]
+            options: categoryData
         },
         {
             label: "Shipping",
@@ -173,6 +217,9 @@ const CreateProduct = () => {
     
     return (
          <Layout title= "" description="Create Product" className="container">
+            {values.loading ? <Loader /> : ''}
+            {error ? <Validation data = {{type: 'error', text: error}} /> : ''}
+            {success ? <Validation data = {{type: 'success', text: 'Success!'}} /> : ''}
            <UserForm 
                 items = {itemsToRender}
                 handleChangeFunction = {handleChange}

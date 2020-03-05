@@ -15,20 +15,9 @@
     position: relative;
 }
 
-.form input[type="file"]::after{
-   content: "Choose File";
-    height: 100%;
-    width: 27%;
-    padding: 0px;
-    position: absolute;
-    left: 0px;
-    text-align: center;
-    border-radius: 3px;
-    border: none;
-    color: #FFFFFF;
-    transition: all 0.5s;
-    cursor: pointer; 
-    background-color: $primary-color;
+.form input[type="file"]{
+    background: $primary-color;
+    border: solid 2px $primary-color;
 }
 
 .input-wrapper {

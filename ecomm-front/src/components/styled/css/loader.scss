@@ -1,0 +1,72 @@
+@import '../../../utils/variables.scss';
+
+$dot-size: 2rem;
+
+@mixin animate-div($anmation-name,$duration, $delay) {
+  -webkit-animation-name: $anmation-name; 
+  -webkit-animation-duration: $duration; 
+  -webkit-animation-delay: $delay;
+  animation-name: $anmation-name;
+  animation-duration: $duration;
+  animation-delay: $delay;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.loader-overlay {
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  letter-spacing: 2px;
+  font-family: monospace;
+  color: $primary-color;
+
+  &-dot1 {
+    font-size: $dot-size;
+    @include animate-div(animate-dot1, 2s, 0s)
+  }
+
+  &-dot2 {
+    font-size: $dot-size;
+    @include animate-div(animate-dot2, 2s, 1s)
+  }
+
+  &-dot3 {
+    font-size: $dot-size;
+    @include animate-div(animate-dot3, 2s, 2s)
+  }
+
+  &-start {
+    font-size: 2rem;
+  }
+
+  &-remaining{
+    font-weight: 700;
+  }
+}
+
+@keyframes animate-dot1 {
+  0%   {opacity: 0}
+  50%   {opacity: 1;}
+  100%   {opacity: 0;}
+}
+
+@keyframes animate-dot2 {
+  0%   {opacity: 0}
+  50%   {opacity: 1;}
+  100%   {opacity: 0;}
+}
+
+@keyframes animate-dot3 {
+  0%   {opacity: 0}
+  50%   {opacity: 1;}
+  100%   {opacity: 0;}
+}

@@ -37,7 +37,7 @@ const CreateCategory = () => {
             setError(false)
         } else {
             setSuccess(false)
-            setError(response.error.response.data.message)
+            setError(response.error.response.data.error)
         }
     }
 
