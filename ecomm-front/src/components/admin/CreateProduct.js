@@ -136,7 +136,7 @@ const CreateProduct = () => {
         if (response.error) {
             setValues({
                ...values,
-               error : response.error.message,
+               error : response.error.response.data.error,
                success : false  
             })
         } else {
