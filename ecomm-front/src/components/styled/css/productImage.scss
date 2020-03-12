@@ -1,0 +1,9 @@
+
+  .product-card-image {
+    transform: translateY(0px);
+    transition: all .5s ease;
+
+    &:hover{
+      transform: translateY(-10px)
+    }
+  }

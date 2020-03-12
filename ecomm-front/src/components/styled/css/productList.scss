@@ -1,0 +1,20 @@
+@import '../../../utils/variables.scss';
+
+.product-list-wrapper{
+    padding: 20px 20px;
+    .product-list-products {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+ .product-list-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    span {
+        font-weight: $font-weight-medium;
+        font-size: 20px;
+        line-height: 34px;
+    }
+ }

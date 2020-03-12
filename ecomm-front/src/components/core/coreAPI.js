@@ -4,7 +4,6 @@ import { URL } from '../../config';
 export const getProducts = async (sortBy, limit) => {
      try {
         const response = await axios.get(`${URL}/product?sortBy=${sortBy}&limit=${limit}`)
-        console.log(response)
         return response
     } 
     catch (err) {

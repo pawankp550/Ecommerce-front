@@ -2,35 +2,34 @@ import React, { useState, useEffect } from 'react'
 import Layout from './Layout'
 import { URL } from '../../config'
 import { getProducts } from './coreAPI'
-import ProductCard from '../styled/ProductCard'
+import './css/home.scss'
+
+import ProductList from '../styled/ProductList'
 
 const Home = () => {
-    const [state, setState] = useState({
-        popularProducts: '',
-        newProducts: '',
-        error: false
-    })
+    const [trendingProducts, setTrendingProducts] = useState([])
+    const [newProducts, setNewProducts] = useState([])
+    const [error, setError] = useState(false)
 
-    const getPopularProducts = async () => {
-        const response = await getProducts('sold', 6)
-        setState({...state, popularProducts: response})
+    const getTrendingProducts = async () => {
+        const response = await getProducts('sold', 5)
+        setTrendingProducts(response.data)
     }
 
     const getNewProducts = async () => {
-        const response = await getProducts('createdAt', 6)
-        setState({...state, getNewProducts: response})
+        const response = await getProducts('createdAt', 5)
+        setNewProducts(response.data)
     }
 
     useEffect(() => {
-        getPopularProducts()
+        getTrendingProducts()
         getNewProducts()
     }, [])
-
+ 
     return (
-        <Layout title= "Home Page" description="Node React E-commerce App" >
-            Home Page
-            {URL}
-            <ProductCard/>
+        <Layout title= "" description="" >
+            <ProductList products = {trendingProducts} className = "homepage-trending-products" title="BESTSELLERS"/>
+            <ProductList products = {newProducts} className = "homepage-new-products" title="NEW ARRIVALS"/>
         </Layout>
     )
 }
