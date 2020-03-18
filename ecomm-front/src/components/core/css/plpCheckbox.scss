@@ -1,0 +1,43 @@
+@import '../../../utils/variables.scss';
+
+.checkbox{
+    text-transform: uppercase;
+    padding: 0px 20px;
+
+    &-title {
+        text-align: center;
+        font-weight: $font-weight-high;    
+    }
+
+    ul {
+        list-style: none;
+        padding: 0px;
+
+        li{
+
+            input {
+                visibility: hidden;
+            }
+
+            input:checked + label {
+                background-color: $primary-color;
+                color: white;
+            }
+            
+            label{
+                font-weight: $font-weight-medium;
+                width: 100%;
+                text-align: center;
+                display: inline-block;
+                background-color: white;
+                border: 1px solid $primary-color;
+                cursor: pointer;
+                padding: 8px 0px;
+                font-size: 12px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                transition: all 0.5s ease-in-out;
+            }
+        }
+    }
+}

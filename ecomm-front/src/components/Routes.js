@@ -7,6 +7,7 @@ import './app.scss';
 
 // core components
 import Home from './core/Home';
+import ProductsListing from './core/ProductsListing';
 
 // user components
 import SignUp from './user/SignUp';
@@ -17,14 +18,18 @@ import Dashboard from '../components/user/Dashboard';
 import AdminDashboard from '../components/user/AdminDashboard';
 import CreateCategory from '../components/admin/CreateCategory';
 import CreateProduct from '../components/admin/CreateProduct'
+import ProductList from './styled/ProductList';
 
 function Routes() {
   return (
     <BrowserRouter>
         <Switch>
-            <Route path="/" exact component={Home} />   
+            <Route path="/" exact component={Home} />  
+            <Route path="/shop" exact component={ProductsListing}/>
+ 
             <Route path="/signin" exact component={SignIn} />
             <Route path="/signup" exact component={SignUp} />
+
             <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
             <AdminRoute path="/admin/dashboard" exact component={AdminDashboard}/>
             <AdminRoute path="/create/category" exact component={CreateCategory}/>

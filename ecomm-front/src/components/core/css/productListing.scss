@@ -1,0 +1,12 @@
+.productlisting{
+    display: grid;
+    grid-template-columns: 2fr 6fr;
+
+    &-right {
+        grid-column: 1
+    }
+
+    &-right {
+        grid-column: 2 / -1
+    }
+}

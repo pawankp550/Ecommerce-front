@@ -4,8 +4,8 @@ import ProductImage from './ProductImage'
 import Button from './Button'
 
 const ProductCard = (props) => {
-    console.log(props.item)
     const { name, description, _id, price, photo } = props.item
+
     return (
         <div className="product-card" data-id={_id}>
         <ProductImage url={photo} alt={name} />

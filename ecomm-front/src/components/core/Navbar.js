@@ -50,6 +50,9 @@ const Navbar = () => {
                 <NavLink  className="" to="/" exact >Home</NavLink >
             </li>
             <li className="">
+                <NavLink  className="" to="/shop" exact >Shop</NavLink >
+            </li>
+            <li className="">
                 {renderDasboardLink()}
             </li>
             {renderLogOption()}
