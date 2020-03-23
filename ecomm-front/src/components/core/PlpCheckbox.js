@@ -26,7 +26,7 @@ const PlpCheckbox = (props) => {
         return data.map((item, i) => {
             return (
                 <li key={i}>
-			        <input className="styled-checkbox" id={item._id} type="checkbox" value={item._id} />
+			        <input className="styled-plp-checkbox" id={item._id} type="checkbox" value={item._id} />
 			        <label htmlFor={item._id}>{item.name}</label>
 		        </li>
             )
@@ -34,8 +34,8 @@ const PlpCheckbox = (props) => {
     }
 
     return (
-        <div className="checkbox">
-            <div className="checkbox-title"><span>{title}</span></div>
+        <div className="plp-checkbox">
+            <div className="plp-checkbox-title"><span>{title}</span></div>
             <ul className="" onChange={onCheckboxChanged}>
                 {getList()}
             </ul>

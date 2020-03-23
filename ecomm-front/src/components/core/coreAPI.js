@@ -20,3 +20,13 @@ export const getCategories = async () => {
         return { error: err}
     }
 }
+
+export const getAllProducts = async (sortBy, limit) => {
+     try {
+        const response = await axios.get(`${URL}/product?sortBy=${sortBy}&limit=${limit}`)
+        return response
+    } 
+    catch (err) {
+        return { error: err}
+    }
+}

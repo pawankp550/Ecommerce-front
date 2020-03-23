@@ -1,6 +1,6 @@
 @import '../../../utils/variables.scss';
 
-.plp-checkbox{
+.plp-radiobutton{
     text-transform: uppercase;
     padding: 0px 20px;
 
@@ -12,9 +12,13 @@
     ul {
         list-style: none;
         padding: 0px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         margin-top: 20px;
 
         li{
+            display: flex;
+            justify-content: center;
 
             input {
                 display: none;
@@ -27,10 +31,10 @@
             
             label{
                 font-weight: $font-weight-medium;
-                width: 100%;
                 text-align: center;
                 display: inline-block;
                 background-color: white;
+                width: 95%;
                 border: 1px solid $primary-color;
                 cursor: pointer;
                 padding: 8px 0px;
