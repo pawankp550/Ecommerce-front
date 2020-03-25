@@ -1,0 +1,35 @@
+
+.not-found-svg {
+    display: flex;
+    justify-content: center;
+}
+
+#Vector_9 {
+    animation: shoe 1.5s ease-in-out infinite alternate;
+    transform-origin: center bottom;
+}
+
+#Vector_7 {
+    animation: leg 1.5s ease-in-out infinite alternate;
+ }
+
+ @keyframes leg {
+    from {
+        transform: rotatey(0deg);
+    }
+
+    to {
+        transform: rotatey(13deg);
+    }
+}
+
+
+@keyframes shoe {
+    from {
+        transform: rotatey(0deg);
+    }
+
+    to {
+        transform: rotatey(10deg);
+    }
+}

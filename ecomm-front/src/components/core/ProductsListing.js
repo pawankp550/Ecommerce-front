@@ -3,6 +3,7 @@ import Layout from './Layout'
 import Checkbox from './PlpCheckbox'
 import RadioButton from './PlpRadioButton'
 import ProductList from '../styled/ProductList'
+import NoProductFound from '../styled/NoProductsFound'
 
 import './css/productListing.scss'
 
@@ -80,7 +81,7 @@ const ProductsListing = () => {
                     }}/>
                 </div>
                 <div className="productlisting-right">
-                    <ProductList products = {products} className = "homepage-trending-products" title=""/>
+                    {products.length === 0 ? <NoProductFound /> : <ProductList products = {products} className = "homepage-trending-products" title=""/>}
                 </div>
             </div>
         </Layout>
