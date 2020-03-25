@@ -6,7 +6,7 @@ import ProductList from '../styled/ProductList'
 
 import './css/productListing.scss'
 
-import { getCategories, getProducts } from './coreAPI';
+import { getCategories, getFilteresProducts } from './coreAPI';
 import { priceRanges } from './priceRanges';
 
 const ProductsListing = () => {
@@ -16,12 +16,12 @@ const ProductsListing = () => {
             price: []
         }
     })
-    const [categories, setCategories] = useState([]);
-    const [products, setProducts] = useState([]);
+
     const [skip, setSkip] =  useState(0);
     const [limit, setLimit] = useState(10);
     const [error, setError] = useState(false);
 
+    const [categories, setCategories] = useState([]);
     const getProductCategories = async () => {
         const response = await getCategories()
         if (response.error) {
@@ -30,20 +30,22 @@ const ProductsListing = () => {
             setCategories(response.data)
         }
     }
-
-    const getAllProducts = async () => {
-        const response = await getProducts()
-        setProducts(response.data)
-    }
-
-    const init = () => {
-       getProductCategories()
-       getAllProducts()
-    }
-
     useEffect(() => {
-        init()
+        getProductCategories()
     }, []);
+
+    const [products, setProducts] = useState([]);
+    const filterProducts = async (filters) => {
+        const response = await getFilteresProducts(skip, limit, filters)
+        if (response.error) {
+            setError(true)
+        } else {
+        setProducts(response.data)
+        }
+    }
+    useEffect(() => {
+        filterProducts(myFilters.filters)
+    }, [myFilters]);
 
     const getPrice = (filterId) => {
        const priceRangesLength = priceRanges.length
@@ -51,7 +53,6 @@ const ProductsListing = () => {
        for (let i=0; i<priceRangesLength; i++) {
             if(priceRanges[i]._id === filterId) {
                 return priceRanges[i].value
-                break
             }                    
        }
     }
@@ -64,7 +65,6 @@ const ProductsListing = () => {
         }
         filterTemp.filters[filterBy] = filters
         setMyFilters(filterTemp)
-        console.log(myFilters)
     }
 
     return (
