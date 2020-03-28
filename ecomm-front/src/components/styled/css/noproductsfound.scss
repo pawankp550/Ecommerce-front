@@ -4,32 +4,24 @@
     justify-content: center;
 }
 
-#Vector_9 {
-    animation: shoe 1.5s ease-in-out infinite alternate;
-    transform-origin: center bottom;
+#Vector_3{
+    animation: face 1.2s ease-in-out infinite alternate;
+}
+#Vector_4{
+    animation: face 1.2s ease-in-out infinite alternate;
 }
 
-#Vector_7 {
-    animation: leg 1.5s ease-in-out infinite alternate;
- }
+#Vector_5{
+    animation: face 1.2s ease-in-out infinite alternate;
+}
 
- @keyframes leg {
+ @keyframes face {
     from {
-        transform: rotatey(0deg);
+        transform: rotatex(0deg);
     }
 
     to {
-        transform: rotatey(13deg);
+        transform: rotatex(10deg);
     }
 }
 
-
-@keyframes shoe {
-    from {
-        transform: rotatey(0deg);
-    }
-
-    to {
-        transform: rotatey(10deg);
-    }
-}

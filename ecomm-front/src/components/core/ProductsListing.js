@@ -4,6 +4,7 @@ import Checkbox from './PlpCheckbox'
 import RadioButton from './PlpRadioButton'
 import ProductList from '../styled/ProductList'
 import NoProductFound from '../styled/NoProductsFound'
+import Button from '../styled/Button'
 
 import './css/productListing.scss'
 
@@ -19,8 +20,9 @@ const ProductsListing = () => {
     })
 
     const [skip, setSkip] =  useState(0);
-    const [limit, setLimit] = useState(10);
+    const [limit, setLimit] = useState(5);
     const [error, setError] = useState(false);
+    const [dataSize, setDataSize] = useState(0)
 
     const [categories, setCategories] = useState([]);
     const getProductCategories = async () => {
@@ -40,8 +42,9 @@ const ProductsListing = () => {
         const response = await getFilteresProducts(skip, limit, filters)
         if (response.error) {
             setError(true)
-        } else {
-        setProducts(response.data)
+        } else { 
+            setProducts(response.data.products)
+            setDataSize(response.data.size)
         }
     }
     useEffect(() => {
@@ -68,6 +71,28 @@ const ProductsListing = () => {
         setMyFilters(filterTemp)
     }
 
+    const loadMoreProducts = async () => {
+        console.log('load more')
+        const toSkip = skip + limit
+        
+        const response = await getFilteresProducts(toSkip, limit, myFilters.filters)
+        if (response.error) {
+            setError(true)
+        } else { 
+            setProducts([...products, ...response.data.products])
+            setSkip(toSkip)
+            setDataSize(response.data.size)
+        }
+    }
+
+    const renderLoadMoreButton = () => {    
+        if (dataSize > 0 && dataSize >= limit) {
+            return (
+                <Button handleClick = {loadMoreProducts}>Load More</Button>
+            )
+        }
+    }
+
     return (
         <Layout>
             <div className="productlisting">
@@ -81,7 +106,8 @@ const ProductsListing = () => {
                     }}/>
                 </div>
                 <div className="productlisting-right">
-                    {products.length === 0 ? <NoProductFound /> : <ProductList products = {products} className = "homepage-trending-products" title=""/>}
+                    {dataSize === 0 ? <NoProductFound /> : <ProductList products = {products} className = "homepage-trending-products" title=""/>}
+                    {renderLoadMoreButton()}
                 </div>
             </div>
         </Layout>
