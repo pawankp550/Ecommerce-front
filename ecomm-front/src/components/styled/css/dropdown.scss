@@ -19,7 +19,7 @@ $parent-class: dropdown;
   opacity: 0;
   overflow: hidden;
   transition: opacity .5s;
-   pointer-events: none;
+  pointer-events: none;
 
   &-options{
     border: 1px ridge;
