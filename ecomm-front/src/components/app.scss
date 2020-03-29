@@ -14,3 +14,7 @@ body {
     background-color: inherit;
     border-radius: .3rem;
 }
+
+input:focus, textarea:focus, select:focus, button:focus{
+        outline: none;
+    }

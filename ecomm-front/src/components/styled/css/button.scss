@@ -8,7 +8,7 @@
   font-size: 16px;
   padding: 2px;
   width: 200px;
-  transition: all 0.5s;
+  transition: all 1s;
   cursor: pointer;
   margin: 5px;
   background-color: $primary-color;
@@ -28,10 +28,16 @@
 
 
 .primary-Button:hover span {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .primary-Button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+.primary-Button:active {
+    width: 180px;
+    padding: 1px;
+    box-shadow: 5px 5px 5px $primary-shaddow;
 }
