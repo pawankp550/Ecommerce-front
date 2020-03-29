@@ -194,7 +194,8 @@ const CreateProduct = () => {
             value: category,
             classname: "product-category",
             tagType: 'dropdown',
-            options: categoryData
+            defaultText: 'Select',
+            options: categoryData,
         },
         {
             label: "Shipping",
@@ -202,6 +203,7 @@ const CreateProduct = () => {
             value: shipping,
             classname: "product-shipping",
             tagType: 'dropdown',
+            defaultText: 'Select',
             options: [{value: 'true', name: 'true'}, {value: 'false', name: 'false'}]
         },
         {
