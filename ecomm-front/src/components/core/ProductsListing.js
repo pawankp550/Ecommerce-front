@@ -69,10 +69,10 @@ const ProductsListing = () => {
         }
         filterTemp.filters[filterBy] = filters
         setMyFilters(filterTemp)
+        setSkip(0)
     }
 
     const loadMoreProducts = async () => {
-        console.log('load more')
         const toSkip = skip + limit
         
         const response = await getFilteresProducts(toSkip, limit, myFilters.filters)
@@ -88,7 +88,7 @@ const ProductsListing = () => {
     const renderLoadMoreButton = () => {    
         if (dataSize > 0 && dataSize >= limit) {
             return (
-                <Button handleClick = {loadMoreProducts}>Load More</Button>
+                <Button handleClick = {loadMoreProducts} className="productlisting-load-more-btn">Load More</Button>
             )
         }
     }
@@ -107,8 +107,8 @@ const ProductsListing = () => {
                 </div>
                 <div className="productlisting-right">
                     {dataSize === 0 ? <NoProductFound /> : <ProductList products = {products} className = "homepage-trending-products" title=""/>}
-                    {renderLoadMoreButton()}
                 </div>
+                {renderLoadMoreButton()}
             </div>
         </Layout>
     )

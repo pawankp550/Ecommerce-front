@@ -10,7 +10,7 @@ const Dropdown = (props) => {
   const { handleChangeFn, data } = props
 
   const { name, value, options, classname, defaultText } = data
-  
+
   const toggleOptions = () => {
     const { isOpen } = ddstate;
 
@@ -48,7 +48,7 @@ const Dropdown = (props) => {
 
   return (
     <div className= {classname + ' dropdown'}>
-      <div className="dropdown-selected" onClick={toggleOptions} tabindex="1">
+      <div className="dropdown-selected" onClick={toggleOptions} >
         <span>{value === "" ? defaultText : ddstate.selectedOptions}</span>
       </div>
       <div
