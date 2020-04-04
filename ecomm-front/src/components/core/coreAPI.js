@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { URL } from '../../config';
+import queryString from 'query-string'
 
 export const getProducts = async (sortBy, limit) => {
      try {
@@ -24,6 +25,17 @@ export const getCategories = async () => {
 export const getFilteresProducts = async (skip, limit, filters) => {
      try {
         const response = await axios.post(`${URL}/products/by/search`, {skip, limit, filters})
+        return response
+    } 
+    catch (err) {
+        return { error: err}
+    }
+}
+
+export const findProducts = async (searchData) => {
+    const query = queryString.stringify(searchData)
+    try {
+        const response = await axios.get(`${URL}/products/search?${query}`)
         return response
     } 
     catch (err) {

@@ -1,1 +1,40 @@
-$parent: search;
+@import '../../../utils/variables.scss';
+$borderradius: 5px;
+
+.product-search{
+    background-color: $primary-shaddow;
+    border-radius: $borderradius;
+    padding: 10px 0px;
+
+    &-from{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-input {
+        flex:2;
+        border: solid 1px whitesmoke;
+        border-radius: $borderradius;
+    }
+
+    &-category{
+        flex: 1;
+        margin: 10px;
+        width: 200px;
+        color: white;
+        text-transform: uppercase;
+        border: solid 1px $primary-color;
+        border-radius: 5px;
+    }
+
+    &-button {
+        flex:1;
+    }
+
+    .form-validation-container{
+        animation-name: none;
+        background-color: transparent;
+        color: $error-red-lighter;
+    }
+}

@@ -1,0 +1,21 @@
+.searchlist-container {
+    margin-top: 20px;
+
+    .not-found-svg {
+        height: 300px;
+        margin-left: 177px;
+    }
+}
+
+.searchlist-top {
+    display: flex;
+    justify-content: space-between;
+
+    .close {
+        cursor: pointer;
+    }
+}
+
+.searchlist-noproducts-top {
+    justify-content: flex-end;
+}
