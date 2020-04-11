@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Layout from './Layout'
 import { URL } from '../../config'
 import { getProducts } from './coreAPI'
+import Loader from '../styled/Loader'
 
 import './css/home.scss'
 
@@ -10,7 +11,9 @@ import ProductList from '../styled/ProductList'
 
 const Home = () => {
     const [trendingProducts, setTrendingProducts] = useState([])
+    const [trendingProductLoaded, setTrendingProductLoaded] = useState(false)
     const [newProducts, setNewProducts] = useState([])
+    const [newProductsLoaded, setNewProductsLoaded] = useState(false)
     const [error, setError] = useState(false)
 
     const getTrendingProducts = async () => {
@@ -18,8 +21,8 @@ const Home = () => {
         if(response.error) {
             console.log(response.error)
         } else {
-
             setTrendingProducts(response.data)
+            setTrendingProductLoaded(true)
         }
     }
 
@@ -28,8 +31,8 @@ const Home = () => {
          if(response.error) {
             console.log(response.error)
         } else {
-
             setNewProducts(response.data)
+            setNewProductsLoaded(true)
         }
     }
 
@@ -41,8 +44,8 @@ const Home = () => {
     return (
         <Layout title= "" description="" >
             <Search/>
-            <ProductList products = {trendingProducts} className = "homepage-trending-products" title="BESTSELLERS"/>
-            <ProductList products = {newProducts} className = "homepage-new-products" title="NEW ARRIVALS"/>
+            {trendingProductLoaded ? <ProductList products = {trendingProducts} className = "homepage-trending-products" title="BESTSELLERS"/> : <Loader />}
+            {newProductsLoaded ? <ProductList products = {newProducts} className = "homepage-new-products" title="NEW ARRIVALS"/> : <Loader />}
         </Layout>
     )
 }

@@ -2,6 +2,7 @@ import React from "react";
 import './css/productCard.scss';
 import ProductImage from './ProductImage'
 import Button from './Button'
+import { NavLink, Redirect  } from 'react-router-dom'
 
 const ProductCard = (props) => {
     const { name, description, _id, price, photo } = props.item
@@ -20,7 +21,9 @@ const ProductCard = (props) => {
             </div>
 
             <div className="product-card-cta">
-                <Button className = "submit-button">VIEW</Button>
+                <NavLink to={`/product/${_id}`}>
+                    <Button className = "submit-button">VIEW</Button>
+                </NavLink>
             </div>
         </div>
     )

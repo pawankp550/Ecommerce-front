@@ -12,7 +12,7 @@ const SearchList = (props) => {
         if(numberOfProducts > 0) {
             return (
                 <>
-                    <div className="searchlist-top"><h4>found {numberOfProducts} Result(s)</h4> <div><h4 className="close" onClick={setSearched}>&#10006;</h4></div> </div>
+                    <div className="searchlist-top"><h4>Found {numberOfProducts} Result(s)</h4> <div><h4 className="close" onClick={setSearched}>&#10006;</h4></div> </div>
                     <ProductList products = {products} className = "searchlist-products" title=""/>
                 </>    
             )

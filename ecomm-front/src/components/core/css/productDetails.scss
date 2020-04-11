@@ -1,0 +1,51 @@
+@import '../../../utils/variables.scss';
+.productdetails {
+    display: grid;
+    grid-template-columns:  2fr 1.4fr;
+    justify-items: center;
+
+    @media (max-width:768px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    botton {
+        margin:0px;
+    }
+}
+
+.productdetails-image {
+    align-self: center;
+}
+
+.productdetails-details {
+    border: solid 1px $light-gray;
+    padding: 20px;
+
+    &-product-name, &-product-category, &-product-price, &-product-isInStock, &-product-add-to-bag, &-product-shipping, &-product-created   {
+        margin: 5px 0px;
+    }
+    p, button{
+        margin: 0;
+    }
+}
+
+.productdetails-details-product-isInStock {
+    span {
+        border: solid 0.5px $primary-color;
+        padding: 0px 10px 2px 10px;
+        border-radius: 5px;
+    }
+}
+
+.productdetails-details-product-descrption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+
+    span {
+        font-weight: 600;
+    }
+}

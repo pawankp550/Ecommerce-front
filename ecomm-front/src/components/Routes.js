@@ -8,6 +8,7 @@ import './app.scss';
 // core components
 import Home from './core/Home';
 import ProductsListing from './core/ProductsListing';
+import ProductPage from '../components/core/ProductPage'
 
 // user components
 import SignUp from './user/SignUp';
@@ -26,6 +27,7 @@ function Routes() {
         <Switch>
             <Route path="/" exact component={Home} />  
             <Route path="/shop" exact component={ProductsListing}/>
+            <Route path="/product/:id" exact component={ProductPage}/>
  
             <Route path="/signin" exact component={SignIn} />
             <Route path="/signup" exact component={SignUp} />
