@@ -5,9 +5,8 @@ import './css/productDetails.scss'
 
 
 const ProductDetails = (props) => {
-    const { productetails } = props
+    const { productetails, addToBag } = props
     const { _id, name, description, price, quantity, category, shipping, photo, createdAt } = productetails
-    console.log(productetails)
 
     return (
         <div className="productdetails">
@@ -28,7 +27,7 @@ const ProductDetails = (props) => {
                     {quantity > 0 ? <span>In stock</span> : <span>Out of Stock</span>}
                 </div>
                 <div className="productdetails-details-product-add-to-bag">
-                    <Button className="productdetails-product-add-to-bag-btn">ADD TO BAG</Button>
+                    <Button className="productdetails-product-add-to-bag-btn" handleClick={addToBag}>ADD TO BAG</Button>
                 </div>
                 <div className="productdetails-details-product-shipping">
                     <span>Shippable: { shipping ? <span>Yes</span> : <span>Downloadable</span>}</span>

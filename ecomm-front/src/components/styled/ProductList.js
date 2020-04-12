@@ -6,7 +6,7 @@ const ProductList = (props) => {
     const { products, className, title } = props
     const renderCards = (products) => {
        return products.map((item, i) => {
-           item.photo = item.photo.replace('upload/', 'upload/w_200,h_370,c_scale/')
+           item.photo = item.photo.replace('upload/', 'upload/w_200,h_350,c_scale/')
            return (<ProductCard item = {item} key={i}/>)
        })
     }

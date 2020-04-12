@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Layout from './Layout'
 import ProductDetails from './ProductDetails'
 import Loader from '../styled/Loader'
 import ProductList from '../styled/ProductList'
 
-import { useParams } from "react-router-dom"
-
 import { getProduct, getRelatedProducts } from './coreAPI'
+import allActions from '../../actions'
 
 const ProductPage = (props) => {
     const id  = props.match.params.id
+    const dispatch = useDispatch()
 
     const [product, setProduct] = useState([])
     const [hasProductLoaded, setHasProductLoaded] = useState(false)
@@ -43,10 +44,14 @@ const ProductPage = (props) => {
         getProductDetails(id)
     }, [props])
 
+    const addToBagClick = () => {
+        dispatch(allActions.cartActions.addProduct(product))
+    }
+
     return (
         <Layout>
             <div className="product-page-main">
-                {hasProductLoaded ? <ProductDetails productetails = {product}/> : <Loader/>}
+                {hasProductLoaded ? <ProductDetails addToBag = {addToBagClick} productetails = {product}/> : <Loader/>}
                 {hasProductLoaded ? hasrelatedProductsLoaded ? <ProductList products = {relatedProducts} className = "productPage-related-products" title="RELATED PRODUCTS"/> : <Loader/> : ""}
             </div>
         </Layout>

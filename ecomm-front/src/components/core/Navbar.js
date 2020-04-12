@@ -2,11 +2,16 @@ import React from 'react'
 import { NavLink, Redirect  } from 'react-router-dom'
 import './css/navbar.scss'
 import { signOut, checkSignIn } from '../../auth'
+import { useSelector } from 'react-redux'
 
 import history from'../../history'
 
 const Navbar = () => {
    const { isloggedIn, user } = checkSignIn()
+   const cartState = useSelector(state => { console.log(state) 
+    return state.cartState
+})
+console.log(cartState)
 
     const redirectOnSignOut = () => {
        window.location.replace('/')
@@ -56,6 +61,9 @@ const Navbar = () => {
                 {renderDasboardLink()}
             </li>
             {renderLogOption()}
+            <li>
+                <NavLink  className="navbar-cart-link" to="/basket" exact >cart({cartState.length})</NavLink >
+            </li>
         </ul>
     </nav>
     )
