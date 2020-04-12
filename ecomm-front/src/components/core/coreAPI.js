@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
 import { URL } from '../../config';
-import queryString from 'query-string'
+import queryString from 'query-string';
 
 export const getProducts = async (sortBy, limit) => {
      try {
@@ -46,6 +46,16 @@ export const findProducts = async (searchData) => {
 export const getProduct = async (productId) => {
      try {
         const response = await axios.get(`${URL}/product/${productId}`)
+        return response
+    } 
+    catch (err) {
+        return { error: err}
+    }
+}
+
+export const getRelatedProducts = async (productId, sortBy, limit) => {
+     try {
+        const response = await axios.get(`${URL}/product/related/${productId}?sortBy=${sortBy}&limit=${limit}`)
         return response
     } 
     catch (err) {

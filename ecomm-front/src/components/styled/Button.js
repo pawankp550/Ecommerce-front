@@ -8,7 +8,7 @@ let Button = (props) => {
     return (
     <button
         className={props.className + " primary-Button"}
-        onClick={props.handleClick ? props.handleClick : ''}>
+        onClick={ props.handleClick }>
         <span>
             {props.children}
         </span>
