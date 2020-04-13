@@ -12,10 +12,29 @@ const getProductList = (cart, payload) => {
     return [...cartTemp, product]
 }
 
-const cartReducer = (state = [], action) => {
+const saveToLocal = (cart) => {
+  if(window.localStorage) {
+        window.localStorage.setItem('__cart', JSON.stringify(cart))
+  }
+}
+
+const getFromLocal = () => {
+    if(window.localStorage) {
+        const cart = window.localStorage.getItem('__cart')
+        if(cart || cart !== null) {
+            return JSON.parse(cart)
+        } else {
+            return []
+        }
+  }
+}
+
+const cartReducer = (state = getFromLocal(), action) => {
     switch(action.type) {
         case "ADD_PRODUCT":
-            return getProductList(state, action.payload)
+            const cart = getProductList(state, action.payload)
+            saveToLocal(cart)
+            return cart
         
         default:
             return state    

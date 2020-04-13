@@ -30,6 +30,7 @@ const ProductPage = (props) => {
     }
 
     const getProductDetails = async (productId) => {
+        setHasProductLoaded(false)
         const response = await getProduct(productId)
         if  (response.error) {
             console.log(response.error)
@@ -42,6 +43,7 @@ const ProductPage = (props) => {
 
     useEffect(() => {
         getProductDetails(id)
+        window.scrollTo(0, 0)
     }, [props])
 
     const addToBagClick = () => {
