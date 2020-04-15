@@ -1,0 +1,43 @@
+.verticallist{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 160px;
+
+    &-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+
+        img {
+            max-height: 150px;
+        }
+    }
+
+    &-details {
+        flex: 1;
+
+        &-product-quantity {
+            display: flex;
+
+            &-increase, &-decrease {
+                border: solid 1px gray;
+                height: 26px;
+                width: 26px;
+                display: flex;
+                justify-content: center;   
+                align-items: center;
+                margin: 0px 10px; 
+                cursor:pointer;    
+            }
+        }
+    }
+
+    &-options {
+        flex: 1;
+
+        .remove-product {
+            cursor: pointer;
+        }
+    }
+}

@@ -9,6 +9,7 @@ import './app.scss';
 import Home from './core/Home';
 import ProductsListing from './core/ProductsListing';
 import ProductPage from '../components/core/ProductPage'
+import Cart from '../components/core/Cart'
 
 // user components
 import SignUp from './user/SignUp';
@@ -28,6 +29,7 @@ function Routes() {
             <Route path="/" exact component={Home} />  
             <Route path="/shop" exact component={ProductsListing}/>
             <Route path="/product/:id" exact component={ProductPage}/>
+            <Route path="/cart" exact component={Cart}/>
  
             <Route path="/signin" exact component={SignIn} />
             <Route path="/signup" exact component={SignUp} />

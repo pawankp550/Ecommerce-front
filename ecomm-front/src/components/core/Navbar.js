@@ -7,11 +7,8 @@ import { useSelector } from 'react-redux'
 import history from'../../history'
 
 const Navbar = () => {
-   const { isloggedIn, user } = checkSignIn()
-   const cartState = useSelector(state => { console.log(state) 
-    return state.cartState
-})
-console.log(cartState)
+    const { isloggedIn, user } = checkSignIn()
+    const cartState = useSelector(state => state.cartState)
 
     const redirectOnSignOut = () => {
        window.location.replace('/')
@@ -62,7 +59,7 @@ console.log(cartState)
             </li>
             {renderLogOption()}
             <li>
-                <NavLink  className="navbar-cart-link" to="/basket" exact >cart({cartState.length})</NavLink >
+                <NavLink  className="navbar-cart-link" to="/cart" exact >cart({cartState.length})</NavLink >
             </li>
         </ul>
     </nav>
