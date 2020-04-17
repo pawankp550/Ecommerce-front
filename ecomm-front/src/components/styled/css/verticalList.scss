@@ -3,6 +3,10 @@
     justify-content: center;
     align-items: center;
     min-height: 160px;
+    -webkit-box-shadow: 0px 0px 5px 1px gainsboro;
+    -moz-box-shadow: 0px 0px 5px 1px gainsboro;
+    box-shadow: 0px 0px 5px 1px gainsboro;
+    margin: 5px 0px;
 
     &-image {
         flex: 1;
