@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import './css/verticalList.scss'
 
 const VerticalList = (props) => {
-    const { products, quantityChange, removeProduct } = props
+    const { products, listtitle, quantityChange, removeProduct, numberOfProducts } = props
 
     const renderList = () => {
         return products.map(item => {
@@ -23,7 +23,7 @@ const VerticalList = (props) => {
                             &#8377; {price}
                         </div>
                         <div className="verticallist-details-product-quantity">
-                            Quantity: <div className="verticallist-details-product-quantity-increase" onClick={quantityChange('increment', item)}><span >+</span></div>{basketQuantity}<div className="verticallist-details-product-quantity-decrease" onClick={quantityChange('decrement', item)}><span >-</span></div>
+                            Quantity: <div className="verticallist-details-product-quantity-decrease" onClick={quantityChange('decrement', item)}><span >-</span></div> {basketQuantity}  <div className="verticallist-details-product-quantity-increase" onClick={quantityChange('increment', item)}><span >+</span></div>
                         </div>
                     </div>
                     <div className="verticallist-options" onClick = {() => removeProduct(item)}>
@@ -35,7 +35,10 @@ const VerticalList = (props) => {
     }
 
     return (
-        renderList()
+        <>
+            <div className="verticallist-title"><h4>Your cart has {numberOfProducts} item(s)</h4></div>
+            {renderList()}
+        </>
     )
 }
 

@@ -1,3 +1,5 @@
+@import '../../../utils/variables.scss';
+
 .verticallist{
     display: flex;
     justify-content: center;
@@ -25,7 +27,7 @@
             display: flex;
 
             &-increase, &-decrease {
-                border: solid 1px gray;
+                border: solid 1px $light-gray;
                 height: 26px;
                 width: 26px;
                 display: flex;
