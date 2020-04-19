@@ -64,9 +64,23 @@ export const getRelatedProducts = async (productId, sortBy, limit) => {
 }
 
 export const getBraintreeToken = async (token) => {
-    console.log(token)
      try {
         const response = await axios.get(`${URL}/braintree/getToken`, {
+             headers: {
+                Authorization: token
+            }
+        })
+        return response
+    } 
+    catch (err) {
+        return { error: err}
+    }
+}
+
+export const processPayment = async (token, paymentData) => {
+    console.log({token, paymentData})
+     try {
+        const response = await axios.post(`${URL}/braintree/payment`, paymentData, {
              headers: {
                 Authorization: token
             }
