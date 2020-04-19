@@ -17,7 +17,7 @@ const Home = () => {
     const [error, setError] = useState(false)
 
     const getTrendingProducts = async () => {
-        const response = await getProducts('sold', 5)
+        const response = await getProducts('sold', 4)
         if(response.error) {
             console.log(response.error)
         } else {
@@ -27,7 +27,7 @@ const Home = () => {
     }
 
     const getNewProducts = async () => {
-        const response = await getProducts('createdAt', 5)
+        const response = await getProducts('createdAt', 4)
          if(response.error) {
             console.log(response.error)
         } else {

@@ -18,6 +18,7 @@ const Cart = () => {
 
     const [isSignedIn, setIsSignedIn] = useState(false)
     const [cartTotal, setCartTotal] = useState(0)
+    const [paymentSuccess, setPaymentSuccess] = useState(false)
 
     useEffect(() => {
         setIsSignedIn(checkSignIn().isloggedIn)
@@ -43,8 +44,15 @@ const Cart = () => {
             return (
                 <div className ="cart">
                     <div className="cart-productList"><VerticalList products = {products} removeProduct = {onRemoveProductClick} quantityChange = {onQuantityChange} numberOfProducts= {products.length}/></div>
-                    <div className="cart-summary"><Checkout isUserSignedIn = {isSignedIn} cartTotal = {cartTotal} /></div>
+                    <div className="cart-checkout"><Checkout isUserSignedIn = {isSignedIn} cartTotal = {cartTotal} dispatch = {dispatch} cartActions = {allActions.cartActions} payment = {{success: paymentSuccess, setSuccess: setPaymentSuccess}}/></div>
                 </div>
+            )
+        } else if (paymentSuccess) {
+            return (
+                <>
+                    <div><h1>Thank You for Your Order!</h1></div>
+                    <div><NavLink to={"/shop"}>Continue shopping</NavLink></div>
+                </>
             )
         } else {
             return (

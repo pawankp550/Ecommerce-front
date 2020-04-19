@@ -26,9 +26,16 @@ const decrementQuantity = (productObj) => {
     }
 }
 
+const clearCart = () => {
+    return {
+        type: 'CLEAR_CART'
+    }
+}
+
 export default {
     addProduct,
     removeProduct,
     incrementQuantity,
-    decrementQuantity
+    decrementQuantity,
+    clearCart
 }

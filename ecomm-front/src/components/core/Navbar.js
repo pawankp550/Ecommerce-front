@@ -59,7 +59,7 @@ const Navbar = () => {
             </li>
             {renderLogOption()}
             <li>
-                <NavLink  className="navbar-cart-link" to="/cart" exact >cart({cartState.length})</NavLink >
+                <NavLink  className="navbar-cart-link" to="/cart" exact >Cart({cartState.length})</NavLink >
             </li>
         </ul>
     </nav>

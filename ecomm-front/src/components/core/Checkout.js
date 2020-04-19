@@ -9,7 +9,7 @@ import { checkSignIn } from '../../auth'
 import { getBraintreeToken, processPayment } from './coreAPI'
 
 const CartDetails = (props) => {
-    const { cartTotal, isUserSignedIn } = props
+    const { cartTotal, isUserSignedIn, dispatch, cartActions, payment } = props
 
     const [data, setData] = useState({
         success: false,
@@ -49,6 +49,8 @@ const CartDetails = (props) => {
 
                 const paymentResponse = await processPayment(user.token, paymentData)
                 setData({...data, success:paymentResponse.data.success})
+                dispatch(cartActions.clearCart())
+                payment.setSuccess(true)
 
         }
         catch(err) {
