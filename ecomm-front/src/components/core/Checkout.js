@@ -6,13 +6,12 @@ import Loader from '../styled/Loader'
 import Validation from '../styled/Validation'
 
 import { checkSignIn } from '../../auth'
-import { getBraintreeToken, processPayment } from './coreAPI'
+import { getBraintreeToken, processPayment, createOrder } from './coreAPI'
 
 const CartDetails = (props) => {
-    const { cartTotal, isUserSignedIn, dispatch, cartActions, payment } = props
+    const { products, cartTotal, isUserSignedIn, dispatch, cartActions, payment } = props
 
     const [data, setData] = useState({
-        success: false,
         clientToken: null,
         error: '',
         instance: {},
@@ -37,20 +36,38 @@ const CartDetails = (props) => {
         }
     }, [isUserSignedIn])
 
+    const createOrderonServer = async (orderData) => {
+        const response = await createOrder(user.token, orderData)
+        dispatch(cartActions.clearCart())
+        payment.setSuccess(true)
+    }
+
     const buy = async () => {
         try {
-                const response = await data.instance.requestPaymentMethod()
-                const { nonce } = response
+                if (data.address) {
+                    const response = await data.instance.requestPaymentMethod()
+                    const { nonce } = response
+    
+                    const paymentData = {
+                        amountFromClient: cartTotal,
+                        paymentMethodNonce: nonce,
+                    }
+    
+                    const paymentResponse = await processPayment(user.token, paymentData)
+                    console.log(paymentResponse)
 
-                const paymentData = {
-                    amountFromClient: cartTotal,
-                    paymentMethodNonce: nonce,
+                    const createOrderData = {
+                            products: products,
+                            transaction_id: paymentResponse.data.transaction.id,
+                            amount: paymentResponse.data.transaction.amount,
+                            createdAt: paymentResponse.data.transaction.createdAt,
+                            address: data.address
+                    }
+
+                    createOrderonServer(createOrderData)
+                } else {
+                    setData({...data, error: 'Please enter Address'})
                 }
-
-                const paymentResponse = await processPayment(user.token, paymentData)
-                setData({...data, success:paymentResponse.data.success})
-                dispatch(cartActions.clearCart())
-                payment.setSuccess(true)
 
         }
         catch(err) {
@@ -59,10 +76,15 @@ const CartDetails = (props) => {
         }
     }
 
+    const onAddressChange = (e) => {
+        setData({...data, address: e.target.value})
+    }
+
     const renderBraintreeDropIn = () => {
         if (data.clientToken) {
             return (
                 <div onBlur = {() => { setData({...data, error:''}) }}>
+                <div className="cart-details-address"><textarea name="address" placeholder="Type your delivery address here..." onChange={onAddressChange} value={data.address}></textarea></div>
                     <DropIn
                         options={{ authorization: data.clientToken }}
                         onInstance={(instance) => (data.instance = instance)}
@@ -82,12 +104,6 @@ const CartDetails = (props) => {
     const renderError = (error) => {
         return (
             <Validation data = {{type: "error", text: error}}/>
-        )
-    }
-
-    const renderSuccess = () => {
-        return (
-            <Validation data = {{type: "success", text: 'Transaction Succeeded'}}/>
         )
     }
 
@@ -111,7 +127,6 @@ const CartDetails = (props) => {
             <div className="cart-details">
                 <h3>Total: &#8377; {cartTotal}</h3>
                 {data.error ? renderError(data.error) : ''}
-                {data.success ? renderSuccess() : ''}
                 {renderButton()}
             </div>
         </>

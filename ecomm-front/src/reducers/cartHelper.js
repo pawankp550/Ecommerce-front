@@ -4,11 +4,11 @@ export const addProduct = (cart, payload) => {
 
     for(let i = 0; i < cartLength; i++ ) {
         if(cartTemp[i]['_id'] === payload._id) {
-            cartTemp[i].basketQuantity = cartTemp[i]['basketQuantity'] + 1 
+            cartTemp[i].count = cartTemp[i]['count'] + 1 
             return cartTemp
         }
     }
-    const product = {...payload, basketQuantity: 1}
+    const product = {...payload, count: 1}
     return [...cartTemp, product]
 }
 
@@ -42,7 +42,7 @@ export const incrementProductQuantity = (cart, payload) => {
 
     for(let i = 0; i < cartLength; i++ ) {
         if(cartTemp[i]['_id'] === payload._id) {
-            cartTemp[i].basketQuantity = cartTemp[i]['basketQuantity'] + 1 
+            cartTemp[i].count = cartTemp[i]['count'] + 1 
             return cartTemp
         }
     }
@@ -54,7 +54,7 @@ export const decrementProductQuantity = (cart, payload) => {
 
     for(let i = 0; i < cartLength; i++ ) {
         if(cartTemp[i]['_id'] === payload._id) {
-            cartTemp[i].basketQuantity = cartTemp[i]['basketQuantity'] - 1 
+            cartTemp[i].count = cartTemp[i]['count'] - 1 
             return cartTemp
         }
     }

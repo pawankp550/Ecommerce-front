@@ -8,7 +8,7 @@ const VerticalList = (props) => {
 
     const renderList = () => {
         return products.map(item => {
-            const { _id, name, price, quantity, category, photo, basketQuantity } = item
+            const { _id, name, price, quantity, category, photo, count } = item
             const imageUrl = photo.replace('upload/', 'upload/w_70,h_130,c_scale/')    
             return (
                 <div className="verticallist" data-id={_id} data-quantity={quantity} key={_id}>
@@ -23,7 +23,7 @@ const VerticalList = (props) => {
                             &#8377; {price}
                         </div>
                         <div className="verticallist-details-product-quantity">
-                            Quantity: <div className="verticallist-details-product-quantity-decrease" onClick={quantityChange('decrement', item)}><span >-</span></div> {basketQuantity}  <div className="verticallist-details-product-quantity-increase" onClick={quantityChange('increment', item)}><span >+</span></div>
+                            Quantity: <div className="verticallist-details-product-quantity-decrease" onClick={quantityChange('decrement', item)}><span >-</span></div> {count}  <div className="verticallist-details-product-quantity-increase" onClick={quantityChange('increment', item)}><span >+</span></div>
                         </div>
                     </div>
                     <div className="verticallist-options" onClick = {() => removeProduct(item)}>

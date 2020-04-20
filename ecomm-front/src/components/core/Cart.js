@@ -27,9 +27,9 @@ const Cart = () => {
 
     const onQuantityChange = (type, product) => {
         return (event) => {
-            if(type === 'increment' && product.basketQuantity < product.quantity) {
+            if(type === 'increment' && product.count < product.quantity) {
                 dispatch(allActions.cartActions.incrementQuantity(product))
-            } else if((type === 'decrement' && product.basketQuantity > 1)) {
+            } else if((type === 'decrement' && product.count > 1)) {
                 dispatch(allActions.cartActions.decrementQuantity(product))
             }
         }
@@ -44,7 +44,7 @@ const Cart = () => {
             return (
                 <div className ="cart">
                     <div className="cart-productList"><VerticalList products = {products} removeProduct = {onRemoveProductClick} quantityChange = {onQuantityChange} numberOfProducts= {products.length}/></div>
-                    <div className="cart-checkout"><Checkout isUserSignedIn = {isSignedIn} cartTotal = {cartTotal} dispatch = {dispatch} cartActions = {allActions.cartActions} payment = {{success: paymentSuccess, setSuccess: setPaymentSuccess}}/></div>
+                    <div className="cart-checkout"><Checkout products = {products} isUserSignedIn = {isSignedIn} cartTotal = {cartTotal} dispatch = {dispatch} cartActions = {allActions.cartActions} payment = {{success: paymentSuccess, setSuccess: setPaymentSuccess}}/></div>
                 </div>
             )
         } else if (paymentSuccess) {

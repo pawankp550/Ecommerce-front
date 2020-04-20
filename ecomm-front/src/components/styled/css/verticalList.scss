@@ -17,11 +17,14 @@
 
         img {
             max-height: 150px;
-        }
+        }   
     }
 
     &-details {
         flex: 1;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
 
         &-product-quantity {
             display: flex;
@@ -41,6 +44,8 @@
 
     &-options {
         flex: 1;
+        display: flex;
+        justify-content: center;
 
         .remove-product {
             cursor: pointer;
