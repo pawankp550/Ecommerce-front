@@ -36,10 +36,25 @@ const CartDetails = (props) => {
         }
     }, [isUserSignedIn])
 
-    const createOrderonServer = async (orderData) => {
-        const response = await createOrder(user.token, orderData)
-        dispatch(cartActions.clearCart())
-        payment.setSuccess(true)
+    const createOrderonServer = async (paymentResponse) => {
+        try {
+            const orderData = {
+                    products: products,
+                    transaction_id: paymentResponse.data.transaction.id,
+                    amount: paymentResponse.data.transaction.amount,
+                    updatedAt: paymentResponse.data.transaction.updatedAt,
+                    address: data.address,
+                    paymentStatus: paymentResponse.data.transaction.status,
+                    paymentType: paymentResponse.data.transaction.paymentInstrumentType
+            }
+            const response = await createOrder(user.token, orderData)
+            if (response.error) throw "error in createOrderonServer "
+            dispatch(cartActions.clearCart())
+            payment.setSuccess(true)
+
+        } catch(err) {
+            setData({...data, error: err.message})
+        }
     }
 
     const buy = async () => {
@@ -54,17 +69,8 @@ const CartDetails = (props) => {
                     }
     
                     const paymentResponse = await processPayment(user.token, paymentData)
-                    console.log(paymentResponse)
-
-                    const createOrderData = {
-                            products: products,
-                            transaction_id: paymentResponse.data.transaction.id,
-                            amount: paymentResponse.data.transaction.amount,
-                            createdAt: paymentResponse.data.transaction.createdAt,
-                            address: data.address
-                    }
-
-                    createOrderonServer(createOrderData)
+                    if (paymentResponse.error) throw "error in proccessing"
+                    createOrderonServer(paymentResponse)
                 } else {
                     setData({...data, error: 'Please enter Address'})
                 }

@@ -19,8 +19,8 @@ import Dashboard from '../components/user/Dashboard';
 // admin components
 import AdminDashboard from '../components/user/AdminDashboard';
 import CreateCategory from '../components/admin/CreateCategory';
-import CreateProduct from '../components/admin/CreateProduct'
-import ProductList from './styled/ProductList';
+import CreateProduct from '../components/admin/CreateProduct';
+import Orders from '../components/admin/Orders';
 
 function Routes() {
   return (
@@ -38,6 +38,7 @@ function Routes() {
             <AdminRoute path="/admin/dashboard" exact component={AdminDashboard}/>
             <AdminRoute path="/create/category" exact component={CreateCategory}/>
             <AdminRoute path="/create/product" exact component={CreateProduct}/>
+            <AdminRoute path="/admin/order" exact component={Orders}/>
         </Switch>
     </BrowserRouter>
   );

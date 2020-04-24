@@ -94,7 +94,7 @@ export const processPayment = async (token, paymentData) => {
 
 export const createOrder = async (token, orderData) => {
      try {
-        const response = await axios.post(`${URL}/order/create`, orderData, {
+        const response = await axios.post(`${URL}/order/create`, {order: orderData}, {
              headers: {
                 Authorization: token
             }
