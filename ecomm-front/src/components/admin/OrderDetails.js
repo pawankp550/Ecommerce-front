@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Dropdown from '../styled/Dropdown'
 import moment from 'moment'
-import Orders from './Orders'
+import Loader from '../styled/Loader'
+
+import { updateOrderStatus } from './adminAPI'
 
 const OrderDetails = (props) => {
-    const { order, orderStatuses } = props
+    const { order, orderStatuses, user, fetchOrders } = props
 
     const [status, setStatus] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const renderProducts = (products) => {
         return products.map((item, i) => {
@@ -38,15 +41,36 @@ const OrderDetails = (props) => {
         })
     }
 
+    const updateStatus = async (statusData) => {
+        try {
+            setLoading(true)
+            const response = await updateOrderStatus(user.token, statusData)
+            if(response.error) {
+                setLoading(false)
+                return console.log(response.error)
+            }
+
+            setLoading(false)
+            fetchOrders()
+        } catch(err) {
+            setLoading(false)
+            console.log(err)
+        }
+    }
+
     const handleOrderChange = (name) => (e) => {
         e.persist()  
         setStatus(e.target.name)
         console.log({name: e.target.name, value: e.target.value})
+        if (order.status !== e.target.name) {
+            updateStatus({status: e.target.name, orderId: e.target.value})
+        }
     }
     
     const renderOrder = () => {
         return (
             <div className="orders">
+                {loading ? <Loader/> : null}
                 <div className="orders-status"><h4 >Status: {order.status}</h4> </div>
                 <div className="orders-select"><Dropdown handleChangeFn = {handleOrderChange} data = {{name: "orderStatus", defaultText:'Change Status' , value: status, options: formatStatus(), classname: 'order-status-dropdown'}}/></div>
                 <ul className="orders-details">

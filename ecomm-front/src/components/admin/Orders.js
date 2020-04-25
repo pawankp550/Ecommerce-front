@@ -60,7 +60,7 @@ const Orders = () => {
     const renderOrders = () => {
         return orders.map((order, oIndex) => {
             return (
-                <OrderDetails key={oIndex} order = {order} orderStatuses={orderStatuses}/>
+                <OrderDetails key={oIndex} order = {order} user = {user} orderStatuses={orderStatuses} fetchOrders = {fetchOrders} />
             )
         })
     }
