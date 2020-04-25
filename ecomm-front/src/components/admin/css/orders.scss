@@ -1,0 +1,83 @@
+@import '../../../utils/variables.scss';
+
+.orders-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .orders {
+        width: 70%;
+        border: solid 1px $light-gray;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        
+        ul {
+            list-style: none;
+        }
+
+        &-status {
+            display: flex;
+            justify-content: center;
+            h4{
+                width: fit-content;
+                background: aquamarine;
+                padding: 10px;
+            }
+        }
+
+        &-details {
+            border: solid 1px $light-gray;
+            padding: 0px 10px;
+            border-radius: 5px;
+
+            li {
+                border-top: solid 1px $light-gray;
+                border-bottom: solid 1px $light-gray;
+
+                &:first-child {
+                    border-top: none;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+
+            label {
+                font-weight: 600;
+                margin-top: .5rem;
+            }
+        }
+
+        &-product-number {
+            font-weight: 700;
+        }
+
+        &-product {
+            border: solid 1px $light-gray;
+            padding: 0px 10px;
+            border-radius: 5px;
+            margin: 5px 0px;
+
+            label {
+                font-weight: 600;
+            }
+        }
+
+        &-select {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px;
+            .order-status-dropdown {
+                width: 30%;
+
+                .dropdown-selected {
+                    border: solid 1px $light-gray;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

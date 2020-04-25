@@ -60,3 +60,19 @@ export const getOrders = async (token) => {
         return { error: err}
     }
 }
+
+export const getOrderStatuses = async (token) => {
+
+    try {
+        const response = await axios.get(`${URL}/order/status`,
+            {
+            headers: {
+                Authorization: token
+            }
+        })
+        return response
+    } 
+    catch (err) {
+        return { error: err}
+    }
+}
