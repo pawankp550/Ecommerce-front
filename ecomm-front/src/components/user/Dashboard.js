@@ -11,7 +11,7 @@ import { NavLink } from 'react-router-dom'
 const Dashboard = () => {
     const { user } = checkSignIn()
 
-    const { name, email, role } = user.publicProfile
+    const { name, email, role, _id } = user.publicProfile
 
     const details1 = {
         title: 'User Information',
@@ -27,7 +27,7 @@ const Dashboard = () => {
         title: 'User Links',
         data: {
             myCart: <NavLink to="/cart">My Cart</NavLink>,
-            updateDetails: <NavLink to="/profile/update">Update Profile</NavLink>
+            updateDetails: <NavLink to={`/profile/${_id}`}>Update Profile</NavLink>
         }
     }
 

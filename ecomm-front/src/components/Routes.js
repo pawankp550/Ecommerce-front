@@ -15,6 +15,7 @@ import Cart from '../components/core/Cart'
 import SignUp from './user/SignUp';
 import SignIn from './user/SignIn';
 import Dashboard from '../components/user/Dashboard';
+import Profile from '../components/user/Profile';
 
 // admin components
 import AdminDashboard from '../components/user/AdminDashboard';
@@ -35,6 +36,7 @@ function Routes() {
             <Route path="/signup" exact component={SignUp} />
 
             <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
+            <PrivateRoute path="/profile/:id" exact component={Profile} />
             <AdminRoute path="/admin/dashboard" exact component={AdminDashboard}/>
             <AdminRoute path="/create/category" exact component={CreateCategory}/>
             <AdminRoute path="/create/product" exact component={CreateProduct}/>

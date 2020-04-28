@@ -4,11 +4,12 @@ import './css/button.scss'
 
 
 let Button = (props) => {
-
+    const { type = '', className, handleClick } = props
     return (
     <button
-        className={props.className + " primary-Button"}
-        onClick={ props.handleClick }>
+        type = {type}
+        className={className + " primary-Button"}
+        onClick={ handleClick }>
         <span>
             {props.children}
         </span>

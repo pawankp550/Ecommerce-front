@@ -1,0 +1,14 @@
+.profile-form{
+    .form-container {
+        display: flex;
+        justify-content: center;
+
+        .form {
+            width: 40%;
+
+            button: {
+                align-self: center;
+            }
+        }
+    }
+}
