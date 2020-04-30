@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../core/Layout'
 import List from '../styled/List'
+import Orderlist from './Orderslist'
 
-import './css/user.scss'
+import './css/dashboard.scss'
 
 import { checkSignIn } from '../../auth'
 import { NavLink } from 'react-router-dom'
@@ -13,14 +14,9 @@ const Dashboard = () => {
 
     const { name, email, role, _id } = user.publicProfile
 
-    const details1 = {
+    const userInfo = {
         title: 'User Information',
         data: { name , email, role: role === 0 ? 'Registered User' :  'Admin' } 
-    }
-
-    const details2 = {
-        title: 'Purchase History',
-        data: { history: 'history' } 
     }
 
     const userLinks = {
@@ -38,10 +34,10 @@ const Dashboard = () => {
                     <List details = {userLinks}/>
                 </div>
                 <div className="dashboard-lists-right">
-                    <List details = {details1}/>
-                    <List details = {details2}/>
+                    <List details = {userInfo}/>
                 </div>
             </div>
+            <Orderlist user = {user}/>
         </Layout>
     )
 

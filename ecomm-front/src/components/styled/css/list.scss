@@ -4,9 +4,9 @@
     border-radius: 5px;
     padding: 2px;
     margin-bottom: 40px;
-    -webkit-box-shadow: 0px 0px 5px 1px rgba(189,189,189,1);
-    -moz-box-shadow: 0px 0px 5px 1px rgba(189,189,189,1);
-    box-shadow: 0px 0px 5px 1px rgba(189,189,189,1);
+    -webkit-box-shadow: 0px 0px 5px 1px $primary-shaddow;
+    -moz-box-shadow: 0px 0px 5px 1px $primary-shaddow;
+    box-shadow: 0px 0px 5px 1px $primary-shaddow;
     
     &-title {
         text-align: center;

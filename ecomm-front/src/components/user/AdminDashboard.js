@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Layout from '../core/Layout'
 import List from '../styled/List'
 
-import './css/user.scss'
+import './css/dashboard.scss'
 
 import { checkSignIn } from '../../auth'
 import { NavLink } from 'react-router-dom'

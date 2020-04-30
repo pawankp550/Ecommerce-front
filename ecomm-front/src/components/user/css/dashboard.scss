@@ -1,3 +1,5 @@
+@import '../../../utils/variables.scss';
+
 .dashboard-lists {
     display: flex;
 
@@ -10,4 +12,54 @@
         flex: 6;
         margin: 5px;
      }
+}
+
+.orders-container {
+    border-radius: 5px;
+    padding: 2px;
+    -webkit-box-shadow: 0px 0px 5px 1px $primary-shaddow;
+    -moz-box-shadow: 0px 0px 5px 1px $primary-shaddow;
+    box-shadow: 0px 0px 5px 1px $primary-shaddow;
+
+    .no-orders-error {
+        text-align: center;
+        padding: 50px 0px;
+        font-weight: 600;
+    }
+
+    .orders-title {
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .order {
+        padding: 10px 20px;
+        border: solid 1px $primary-color;
+        margin: 15px 20px;
+        border-radius: 5px;
+
+        label {
+            font-weight: 600;
+        }
+        
+        .product {
+          border: solid 1px $light-gray;
+          border-radius: 5px;
+          padding: 0px 10px; 
+          margin: 10px; 
+
+          a{
+              display: flex;
+              padding: 10px 0px;
+
+              .product-details {
+                  padding: 0px 10px;
+              }
+          }
+        }
+
+        .order-total, .order-address, .order-status {
+            border-bottom: solid 0.5px $light-gray; 
+        }
+    }
 }
