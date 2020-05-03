@@ -1,0 +1,65 @@
+@import '../../../utils/variables.scss';
+
+.products {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    &-header {
+        display: flex;
+        width: 80%;
+        justify-content: space-around;
+
+        div {
+            width: 100%;
+            background: lavender;
+            text-align: center;
+            margin: 0px 5px;
+            padding: 3px;
+            font-weight: 500;
+            font-size: 17px;
+        }
+    }
+
+    &-data {
+        width: 80%;
+        margin-top: 5px;
+    
+        .products-details {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+            margin: 5px 0px;
+
+            div {
+                width: 100%;
+                background: #f0f0ff;
+                text-align: center;
+                margin: 0px 5px;
+                padding: 3px;
+                font-weight: 500;
+                font-size: 15px;
+            }
+
+            .update {
+                margin: 0px 5px;
+                background-color: $no-error-teal-lighter; 
+                padding: 1px 5px;
+                cursor: pointer;
+                border-radius: 3px;
+                box-shadow: 0px 0px 3px $primary-shaddow;
+            }
+
+            .delete {
+                margin: 0px 5px;
+                background-color: $error-red-lighter;
+                padding: 1px 5px;
+                cursor: pointer;
+                border-radius: 3px;
+                box-shadow: 0px 0px 3px $primary-shaddow;
+            }
+        }
+    }
+
+}

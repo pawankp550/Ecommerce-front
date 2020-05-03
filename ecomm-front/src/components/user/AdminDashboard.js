@@ -28,7 +28,8 @@ const AdminDashboard = () => {
         data: {
             crateCategory: <NavLink to="/create/category">Create Category</NavLink>,
             createProduct: <NavLink to="/create/product">Create Product</NavLink>,
-            orders: <NavLink to="/admin/order">Orders</NavLink>
+            orders: <NavLink to="/admin/order">Orders</NavLink>,
+            updateProducts: <NavLink to="/admin/products">Manage Products</NavLink>
         }
     }
 
