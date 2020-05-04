@@ -49,7 +49,7 @@ const Dropdown = (props) => {
   return (
     <div className= {classname + ' dropdown'}>
       <div className="dropdown-selected" onClick={toggleOptions} >
-        <span>{value === "" ? defaultText : ddstate.selectedOptions}</span>
+        <span>{!ddstate.selectedOptions ? defaultText : ddstate.selectedOptions}</span>
       </div>
       <div
         className={

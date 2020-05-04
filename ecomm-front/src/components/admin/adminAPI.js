@@ -79,6 +79,16 @@ export const updateOrderStatus = async (token, statusData) => {
 
 // product CRUD operations
 
+export const getProduct = async (productId) => {
+     try {
+        const response = await axios.get(`${URL}/product/${productId}`)
+        return response
+    } 
+    catch (err) {
+        return { error: err}
+    }
+}
+
 export const createProduct = async (data, token) => {
 
     try {
